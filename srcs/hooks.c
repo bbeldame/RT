@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/24 14:37:09 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 17:24:34 by bbeldame         ###   ########.fr       */
+/*   Created: 2017/04/01 17:18:21 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/01 17:25:26 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int		main(int ac, char **av)
+int		key_hook(int keycode, t_screen *e)
 {
-	t_screen *fst;
-
-	if (ac == 2)
-	{
-		if (ft_strcmp(av[1], "sphere"))
-			return (0);
-		fst = set_win_img();
-		raytrace(fst);
-		fst->win = mlx_new_window(fst->mlx, W, H, "RTv1");
-		mlx_key_hook(fst->win, key_hook, fst);
-		mlx_put_image_to_window(fst->mlx, fst->win, fst->img, 0, 0);
-		mlx_loop(fst->mlx);
-	}
-	return (0);
+	if (keycode == KEY_ESC)
+		exit(1);
+    (void)e;
+	return (1);
 }

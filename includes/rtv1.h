@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 16:15:56 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/01 17:26:25 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # define W 1500
 # define H 800
+# define FOV 30
+
+# define KEY_ESC 53
 
 typedef struct	s_vector
 {
@@ -75,5 +78,6 @@ t_screen		*set_win_img(void);
 void			raytrace(t_screen *fst);
 double			dot(t_vector v, t_vector b);
 int				intersect_sphere(t_ray ray, float *t, t_sphere sphere);
+int				key_hook(int keycode, t_screen *e);
 
 #endif

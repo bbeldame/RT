@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 13:04:55 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/01 17:33:51 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-#include "stdio.h"
-
 
 void	raytrace(t_screen *fst)
 {
@@ -36,7 +34,7 @@ void	raytrace(t_screen *fst)
 	sphere.p = color(0.5,0.1,0.1);// the coulors values go from 0 to 0.5
 								  //so we need a ft_map to to translate the scale
 								  //0->255 to 0->0.5
-	light = c_sphere(c_vector(0, -100, 1500), 1);
+	light = c_sphere(c_vector(300, 200, 1500), 1);
 	origin = c_vector(0, 0, -1);
 	y = -1;
 	while (++y < H)
@@ -45,7 +43,7 @@ void	raytrace(t_screen *fst)
 		while (++x < W)
 		{
 			dir = normalize(c_vector(x - (W / 2), y - (H / 2), 
-						(W / (2 * tan(30 / 2))) * -1));
+						(W / (2 * tan(FOV / 2))) * -1));
 			dir = normalize(vec_ope_min(dir, origin));
 			ray = c_ray(origin, dir);
 			t = 20000;
@@ -54,9 +52,9 @@ void	raytrace(t_screen *fst)
 				poi = vec_ope_add(ray.o, vec_ope_mult(ray.d, t));
 				distance = normalize(vec_ope_min(poi, sphere.c));
 				norme = dot(distance, distance);
-				norme = norme *norme;
-				norme = 1/sqrt(norme);
-				norme *= norme;
+				//norme = norme *norme;
+				//norme = 1/sqrt(norme);
+				//norme *= norme;
 				if(norme > 0)
 				{
 					l = vec_ope_min(light.c, poi); //raylightdist
