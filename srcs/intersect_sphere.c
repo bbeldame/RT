@@ -6,7 +6,7 @@
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:14:06 by tfaure            #+#    #+#             */
-/*   Updated: 2017/03/29 19:32:03 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/03 17:56:55 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int			intersect_sphere(t_ray ray, float *t, t_sphere sphere)
 		*t = t0;
 	if(t1 > 0)
 		*t = t1;
+	if(*t >= 20000)
+		return (0);
 	return (1);
 }

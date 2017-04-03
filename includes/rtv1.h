@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 17:26:25 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/03 17:52:40 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,5 @@ void			raytrace(t_screen *fst);
 double			dot(t_vector v, t_vector b);
 int				intersect_sphere(t_ray ray, float *t, t_sphere sphere);
 int				key_hook(int keycode, t_screen *e);
-
+t_color			color_mult(t_color colo, float taux);
 #endif

@@ -6,12 +6,31 @@
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:10:16 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 12:44:46 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/03 17:25:49 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
+t_color		color_mult(t_color colo, float taux)
+{
+	colo.r = colo.r * taux;
+	colo.g = colo.g * taux;
+	colo.g = colo.g * taux;
+	if(colo.r > 255)
+		colo.r = 255;
+	if(colo.g > 255)
+		colo.g = 255;
+	if(colo.b > 255)
+		colo.b = 255;
+	if(colo.r < 0)
+		colo.r = 0;
+	if(colo.g < 0)
+		colo.g = 0;
+	if(colo.b < 0)
+		colo.b = 0;
+	return (colo);
+}
 t_color		color(double i, double j, double k)
 {
 	t_color col;
