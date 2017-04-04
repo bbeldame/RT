@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:05:35 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/03 16:49:13 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/04 20:42:25 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ void				ft_strrev(char *s);
 char				*ft_strtolower(char *s);
 char				*ft_strtoupper(char *s);
 int					get_next_line(const int fd, char **line);
-float				ft_map(float x, float lenght, float min, float max);
+float				ft_map(float x, float length, float min, float max);
 #endif
