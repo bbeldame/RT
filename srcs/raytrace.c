@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/03 18:15:22 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/05 19:08:57 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	raytrace(t_screen *fst)
 	t_color		temp_color;
 
 	sphere = c_sphere(c_vector(0, 0, 750), 100);
-	sphere.p = color(ft_map(200, 255, 0, 0.5),
-					ft_map(0, 255, 0, 0.5),
-					ft_map(0, 255, 0, 0.5));
-	light = c_sphere(c_vector(300, 200, 1500), 1);
+	sphere.p = color(ft_map(0,255, 0, 0.5), ft_map(255,255, 0, 0.5), ft_map(0,255, 0, 0.5));
+	light = c_sphere(c_vector(200, 200, 1700), 1);
 	origin = c_vector(0, 0, -1);
 	y = -1;
 	while (++y < H)

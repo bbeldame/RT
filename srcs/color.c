@@ -6,17 +6,17 @@
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:10:16 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/03 17:25:49 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/05 19:05:12 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
-
+#include "stdio.h"
 t_color		color_mult(t_color colo, float taux)
 {
 	colo.r = colo.r * taux;
 	colo.g = colo.g * taux;
-	colo.g = colo.g * taux;
+	colo.b = colo.b * taux;
 	if(colo.r > 255)
 		colo.r = 255;
 	if(colo.g > 255)
@@ -54,6 +54,7 @@ unsigned int		ret_colors(t_color colo)
 	}
 	if(colo.g > 0)
 	{
+	
 	temp = (int)colo.g * 256;
 	total += temp;
 	}
