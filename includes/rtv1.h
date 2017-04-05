@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/03 17:52:40 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/05 20:19:41 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FOV 30
 
 # define KEY_ESC 53
+# define DIST_MAX 20000
 
 typedef struct	s_vector
 {
@@ -67,18 +68,20 @@ typedef struct	s_screen
 unsigned int	ret_colors(t_color colo);
 t_vector		normalize(t_vector vector);
 t_vector		get_normal(t_sphere s, t_vector poi);
-t_vector		c_vector(double a, double b, double c);
+t_vector		c_vector(double x, double y, double z);
 t_vector		vec_ope_min(t_vector v1, t_vector v2);
 t_vector		vec_ope_add(t_vector v1, t_vector v2);
 t_vector		vec_ope_mult(t_vector v1, double d);
 t_vector		vec_ope_div(t_vector v1, double d);
 t_ray			c_ray(t_vector i, t_vector j);
-t_sphere		c_sphere(t_vector i, double j);
-t_color			color(double i, double j, double k);
+t_sphere		c_sphere(t_vector center, double radius);
+t_color			c_color(double r, double g, double b);
 t_screen		*set_win_img(void);
 void			raytrace(t_screen *fst);
 double			dot(t_vector v, t_vector b);
-int				intersect_sphere(t_ray ray, float *t, t_sphere sphere);
+int				intersect_sphere(t_ray ray, double *t, t_sphere sphere);
 int				key_hook(int keycode, t_screen *e);
-t_color			color_mult(t_color colo, float taux);
+t_color			color_mult(t_color colo, double taux);
+double			get_length(t_vector v);
+
 #endif

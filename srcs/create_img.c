@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   creatffe_img.c                                     :+:      :+:    :+:   */
+/*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:04:03 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/01 16:17:34 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/05 20:06:31 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_screen		*set_win_img(void)
 		return (NULL);
 	fst->mlx = mlx_init();
 	fst->img = mlx_new_image(fst->mlx, W, H);
-	fst->data = mlx_get_data_addr(fst->img, &fst->bpp, &fst->sizeline, &fst->endian);
+	fst->data = mlx_get_data_addr(
+		fst->img,
+		&fst->bpp,
+		&fst->sizeline,
+		&fst->endian);
 	return (fst);
 }

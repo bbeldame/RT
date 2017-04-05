@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/05 19:08:57 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/04/05 20:16:11 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	raytrace(t_screen *fst)
 {
 	int			x;
 	int			y;
-	float		t;
-	float		dt;
+	double		t;
+	double		dt;
 	double 		norme;
 	t_vector 	distance;
 	t_vector	origin;
@@ -31,7 +31,7 @@ void	raytrace(t_screen *fst)
 	t_color		temp_color;
 
 	sphere = c_sphere(c_vector(0, 0, 750), 100);
-	sphere.p = color(ft_map(0,255, 0, 0.5), ft_map(255,255, 0, 0.5), ft_map(0,255, 0, 0.5));
+	sphere.p = c_color(250, 100, 20);
 	light = c_sphere(c_vector(200, 200, 1700), 1);
 	origin = c_vector(0, 0, -1);
 	y = -1;
@@ -44,7 +44,6 @@ void	raytrace(t_screen *fst)
 						(W / (2 * tan(FOV / 2))) * -1));
 			dir = normalize(vec_ope_min(dir, origin));
 			ray = c_ray(origin, dir);
-			t = 20000;
 			if(intersect_sphere(ray, &t, sphere))
 			{
 				poi = vec_ope_add(ray.o, vec_ope_mult(ray.d, t));
