@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:10:16 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/05 20:19:59 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/06 17:02:24 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** @todo : explain why
 */
 
-t_color		c_color(double r, double g, double b)
+t_color				c_color(double r, double g, double b)
 {
 	t_color color;
 
@@ -28,7 +28,7 @@ t_color		c_color(double r, double g, double b)
 	return (color);
 }
 
-t_color		color_mult(t_color color, double taux)
+t_color				color_mult(t_color color, double taux)
 {
 	t_color newcolor;
 
@@ -50,21 +50,20 @@ unsigned int		ret_colors(t_color colo)
 	unsigned int temp;
 
 	total = 0;
-	if(colo.r > 0)
+	if (colo.r > 0)
 	{
-	temp = (int)colo.r * 65536;
-	total += temp;
+		temp = (int)colo.r * 65536;
+		total += temp;
 	}
-	if(colo.g > 0)
+	if (colo.g > 0)
 	{
-	
-	temp = (int)colo.g * 256;
-	total += temp;
+		temp = (int)colo.g * 256;
+		total += temp;
 	}
-	if(colo.b > 0)
+	if (colo.b > 0)
 	{
-	temp = (int)colo.b;
-	total += temp;
+		temp = (int)colo.b;
+		total += temp;
 	}
 	return (total);
 }
