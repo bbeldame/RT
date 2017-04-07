@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/05 20:19:41 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/07 12:59:59 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ int				intersect_sphere(t_ray ray, double *t, t_sphere sphere);
 int				key_hook(int keycode, t_screen *e);
 t_color			color_mult(t_color colo, double taux);
 double			get_length(t_vector v);
-
+int				intersect_plane(t_ray ray, double *t);
 #endif

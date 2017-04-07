@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/05 20:16:11 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/07 14:14:08 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	raytrace(t_screen *fst)
 						(W / (2 * tan(FOV / 2))) * -1));
 			dir = normalize(vec_ope_min(dir, origin));
 			ray = c_ray(origin, dir);
-			if(intersect_sphere(ray, &t, sphere))
+			t = 20000;
+			if(intersect_plane(ray, &t))
+				((unsigned int *)fst->data)[x + y * W] = 0xffffff;
+				if(intersect_sphere(ray, &t, sphere))
 			{
 				poi = vec_ope_add(ray.o, vec_ope_mult(ray.d, t));
 				distance = normalize(vec_ope_min(poi, sphere.c));

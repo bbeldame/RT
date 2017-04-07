@@ -6,7 +6,7 @@
 #    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/05 20:20:46 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/07 12:57:41 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJDIR = ./objs/
 INCDIR = ./includes
 SRCDIR = ./srcs/
 SRCS_NAME = color.c create_img.c main.c operation.c \
-	ray.c raytrace.c sphere.c vector.c hooks.c
+	ray.c raytrace.c sphere.c vector.c hooks.c intersect_plane.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS_NAME:.c=.o))
 LIBFT = $(addprefix $(LIBFTDIR)/,$(LIBFTA))
 
