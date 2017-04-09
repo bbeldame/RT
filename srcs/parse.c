@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/09 20:57:39 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/09 21:14:54 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ t_env	*parse(t_env *e)
 	tmp->origin = c_vector(26, -23, 100);
 	tmp->radius = 20;
 	tmp->color = c_color(255, 255, 51);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(0, 0, 500);
+	tmp->radius = 50;
+	tmp->color = c_color(100, 50, 180);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
