@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_map.c                                           :+:      :+:    :+:   */
+/*   semalloc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/04 20:41:01 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/09 20:14:18 by bbeldame         ###   ########.fr       */
+/*   Created: 2017/04/09 16:31:59 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/09 20:14:42 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-float	ft_map(float x, float length, float min, float max)
+void		*semalloc(size_t size)
 {
-	return ((x / length) * (max - min) + min);
+	void *new;
+
+	if (!(new = malloc(size)))
+		err_found("malloc failed");
+	return (new);
 }

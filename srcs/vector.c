@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:41:44 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/05 20:21:34 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/09 20:15:16 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,4 @@ t_vector	normalize(t_vector vector)
 double		dot(t_vector v, t_vector b)
 {
 	return ((v.x * b.x) + (v.y * b.y) + (v.z * b.z));
-}
-
-t_vector	get_normal(t_sphere s, t_vector poi)
-{
-	return (vec_ope_div(vec_ope_min(s.c, poi), s.r));
 }

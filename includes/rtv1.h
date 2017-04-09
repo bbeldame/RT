@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/07 12:59:59 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/09 20:57:45 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define KEY_ESC 53
 # define DIST_MAX 20000
 
+enum	e_type
+{
+	PLANE = 2,
+	SPHERE,
+	CYLINDER,
+	CONE
+};
+
 typedef struct	s_vector
 {
 	double		x;
@@ -35,8 +43,8 @@ typedef struct	s_vector
 
 typedef struct	s_ray
 {
-	t_vector	o;		//origin
-	t_vector	d;		//direction
+	t_vector	origin;
+	t_vector	direction;
 }				t_ray;
 
 typedef struct	s_color
@@ -46,42 +54,50 @@ typedef struct	s_color
 	double		b;
 }				t_color;
 
-typedef struct	s_sphere
+typedef struct	s_object
 {
-	t_vector	c;		//center
-	t_color		p;		//color
-	double		r;		//radius
-}				t_sphere;
+	int				type;
+	t_vector		origin;
+	double			radius;
+	t_vector		direction;
+	t_color			color;
+	struct s_object	*next;
+}				t_object;
 
-
-typedef struct	s_screen
+typedef struct	s_env
 {
 	void		*mlx;
 	void		*win;
 	void		*img;
 	int			bpp;
-	int			sizeline;
+	int			sl;
+	t_vector	camera;
 	int			endian;
 	char		*data;
-}				t_screen;
+	t_vector	light;
+	t_object	*obj;
+}				t_env;
 
-unsigned int	ret_colors(t_color colo);
+unsigned int	ret_colors(t_color color);
 t_vector		normalize(t_vector vector);
-t_vector		get_normal(t_sphere s, t_vector poi);
 t_vector		c_vector(double x, double y, double z);
 t_vector		vec_ope_min(t_vector v1, t_vector v2);
 t_vector		vec_ope_add(t_vector v1, t_vector v2);
 t_vector		vec_ope_mult(t_vector v1, double d);
 t_vector		vec_ope_div(t_vector v1, double d);
 t_ray			c_ray(t_vector i, t_vector j);
-t_sphere		c_sphere(t_vector center, double radius);
 t_color			c_color(double r, double g, double b);
-t_screen		*set_win_img(void);
-void			raytrace(t_screen *fst);
+t_env			*set_win_img(void);
+void			raytrace(t_env *e);
 double			dot(t_vector v, t_vector b);
-int				intersect_sphere(t_ray ray, double *t, t_sphere sphere);
-int				key_hook(int keycode, t_screen *e);
-t_color			color_mult(t_color colo, double taux);
+double			intersect_sphere(t_ray ray, t_object sphere);
+int				key_hook(int keycode, t_env *e);
+void			color_mult(t_color *color, double taux);
 double			get_length(t_vector v);
-int				intersect_plane(t_ray ray, double *t);
+double			intersect_plane(t_ray ray, t_object sphere);
+t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
+t_env			*parse(t_env *e);
+t_color			*copy_color(t_color color);
+t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
+
 #endif

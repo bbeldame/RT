@@ -3,27 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   create_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:04:03 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/06 16:59:32 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/04/09 20:16:33 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_screen		*set_win_img(void)
+t_env		*set_win_img(void)
 {
-	t_screen	*fst;
+	t_env	*e;
 
-	if (!(fst = (t_screen *)malloc(sizeof(t_screen))))
+	if (!(e = (t_env *)malloc(sizeof(t_env))))
 		return (NULL);
-	fst->mlx = mlx_init();
-	fst->img = mlx_new_image(fst->mlx, W, H);
-	fst->data = mlx_get_data_addr(
-	fst->img,
-	&fst->bpp,
-	&fst->sizeline,
-	&fst->endian);
-	return (fst);
+	e->mlx = mlx_init();
+	e->img = mlx_new_image(e->mlx, W, H);
+	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->endian);
+	return (e);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/01 17:18:21 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/06 17:04:08 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/04/09 16:28:43 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int		key_hook(int keycode, t_screen *e)
+int		key_hook(int keycode, t_env *e)
 {
 	if (keycode == KEY_ESC)
 		exit(1);

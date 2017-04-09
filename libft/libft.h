@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:05:35 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/04 20:42:25 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/09 16:33:28 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,7 @@ char				*ft_strtolower(char *s);
 char				*ft_strtoupper(char *s);
 int					get_next_line(const int fd, char **line);
 float				ft_map(float x, float length, float min, float max);
+void				*semalloc(size_t size);
+void				err_found(char *str);
+
 #endif

@@ -6,66 +6,88 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/07 14:14:08 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/09 20:57:13 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-void	raytrace(t_screen *fst)
+/*
+** We test all the object to get the minimal z coordinate of point_of_impact
+** We save the first hitten object in the closest variable
+*/
+
+static double		get_min_dist(t_env *e, t_ray ray, t_object **closest)
+{
+	t_object	*tmp;
+	double		min_dist;
+	double		dist;
+
+	tmp = e->obj;
+	min_dist = DIST_MAX;
+	dist = DIST_MAX;
+	while (tmp)
+	{
+		dist = (tmp->type == SPHERE) ? intersect_sphere(ray, *tmp) : dist;
+		dist = (tmp->type == PLANE) ? intersect_plane(ray, *tmp) : dist;
+		if (dist < min_dist)
+		{
+			min_dist = dist;
+			*closest = tmp;
+		}
+		tmp = tmp->next;
+	}
+	return (min_dist < DIST_MAX) ? min_dist : -1;
+}
+
+/*
+** From the minimal z, we calculate the point_of_impact
+** and send it to the compute method to return a color
+*/
+
+static t_color		*get_pxl_color(t_env *e, t_ray ray)
+{
+	double		min_dist;
+	t_object	*obj;
+	t_vector	point_of_impact;
+	t_color		*color;
+
+	color = NULL;
+	obj = NULL;
+	if ((min_dist = get_min_dist(e, ray, &obj)) == -1)
+		return (NULL);
+	point_of_impact = vec_ope_add(ray.origin,
+								vec_ope_mult(ray.direction, min_dist));
+	if (obj && obj->type == SPHERE)
+		color = compute_color_sphere(e, point_of_impact, *obj);
+	if (obj && obj->type == PLANE)
+		color = compute_color_plane(e, point_of_impact, *obj);
+	return (color);
+}
+
+void				raytrace(t_env *e)
 {
 	int			x;
 	int			y;
-	double		t;
-	double		dt;
-	double 		norme;
-	t_vector 	distance;
-	t_vector	origin;
 	t_vector	dir;
-	t_sphere	sphere;
-	t_sphere	light;
-	t_vector	poi;   //for point of impact//
 	t_ray		ray;
-	t_vector	n;
-	t_vector	l;
-	t_color		temp_color;
+	t_color		*color;
 
-	sphere = c_sphere(c_vector(0, 0, 750), 100);
-	sphere.p = c_color(250, 100, 20);
-	light = c_sphere(c_vector(200, 200, 1700), 1);
-	origin = c_vector(0, 0, -1);
-	y = -1;
-	while (++y < H)
+	y = 0;
+	while (y < H)
 	{
-		x = -1;
-		while (++x < W)
+		x = 0;
+		while (x < W)
 		{
-			dir = normalize(c_vector(x - (W / 2), y - (H / 2), 
+			dir = normalize(c_vector(x - (W / 2), y - (H / 2),
 						(W / (2 * tan(FOV / 2))) * -1));
-			dir = normalize(vec_ope_min(dir, origin));
-			ray = c_ray(origin, dir);
-			t = 20000;
-			if(intersect_plane(ray, &t))
-				((unsigned int *)fst->data)[x + y * W] = 0xffffff;
-				if(intersect_sphere(ray, &t, sphere))
-			{
-				poi = vec_ope_add(ray.o, vec_ope_mult(ray.d, t));
-				distance = normalize(vec_ope_min(poi, sphere.c));
-				norme = 1/dot(distance, distance);
-				norme *= norme;
-				if(norme > 0)
-				{
-					l = vec_ope_min(light.c, poi); //raylightdist
-					n = vec_ope_div(l, norme);		//rayligthdir
-					l = c_vector(distance.x * l.x, distance.y *l.y, 
-						distance.z *l.z);//intensityligt
-					dt = 0.5 * norme * (l.x + l.y + l.z);//intensite
-					temp_color = sphere.p;
-					temp_color = color_mult(temp_color, dt);
-					((unsigned int *)fst->data)[x + y * W] =
-						ret_colors(temp_color);
-				}
-			}
+			dir = normalize(vec_ope_min(dir, e->camera));
+			ray = c_ray(e->camera, dir);
+			color = get_pxl_color(e, ray);
+			if (color != NULL)
+				((unsigned int *)e->data)[x + y * W] = ret_colors(*color);
+			x++;
 		}
+		y++;
 	}
 }

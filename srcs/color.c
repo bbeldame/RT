@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/24 16:10:16 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/06 17:02:24 by tfaure           ###   ########.fr       */
+/*   Created: 2017/04/09 20:14:59 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/09 20:15:00 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+t_color				*copy_color(t_color color)
+{
+	t_color		*newcolor;
+
+	newcolor = (t_color *)semalloc(sizeof(t_color));
+	newcolor->r = color.r;
+	newcolor->g = color.g;
+	newcolor->b = color.b;
+	return (newcolor);
+}
 
 /*
 ** @param color rbg between 0 and 255
@@ -28,20 +39,17 @@ t_color				c_color(double r, double g, double b)
 	return (color);
 }
 
-t_color				color_mult(t_color color, double taux)
+void				color_mult(t_color *color, double taux)
 {
-	t_color newcolor;
-
-	newcolor.r = color.r * taux;
-	newcolor.g = color.g * taux;
-	newcolor.b = color.b * taux;
-	newcolor.r = (newcolor.r > 255) ? 255 : newcolor.r;
-	newcolor.g = (newcolor.g > 255) ? 255 : newcolor.g;
-	newcolor.b = (newcolor.b > 255) ? 255 : newcolor.b;
-	newcolor.r = (newcolor.r < 0) ? 0 : newcolor.r;
-	newcolor.g = (newcolor.g < 0) ? 0 : newcolor.g;
-	newcolor.b = (newcolor.b < 0) ? 0 : newcolor.b;
-	return (newcolor);
+	color->r = color->r * taux;
+	color->g = color->g * taux;
+	color->b = color->b * taux;
+	color->r = (color->r > 255) ? 255 : color->r;
+	color->g = (color->g > 255) ? 255 : color->g;
+	color->b = (color->b > 255) ? 255 : color->b;
+	color->r = (color->r < 0) ? 0 : color->r;
+	color->g = (color->g < 0) ? 0 : color->g;
+	color->b = (color->b < 0) ? 0 : color->b;
 }
 
 unsigned int		ret_colors(t_color colo)
