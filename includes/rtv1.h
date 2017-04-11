@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/09 20:57:45 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/10 16:24:11 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,11 @@ int				key_hook(int keycode, t_env *e);
 void			color_mult(t_color *color, double taux);
 double			get_length(t_vector v);
 double			intersect_plane(t_ray ray, t_object sphere);
+double			intersect_cylinder(t_ray ray, t_object cylinder);
 t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
 t_env			*parse(t_env *e);
 t_color			*copy_color(t_color color);
 t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
+t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
 
 #endif

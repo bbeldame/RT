@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/09 21:14:54 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/11 12:52:07 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_env	*parse(t_env *e)
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
-	/*tmp->type = PLANE;
+	tmp->type = PLANE;
 	tmp->origin = c_vector(1, 1, 0);
 	tmp->direction = c_vector(1, 0, 0);
 	tmp->color = c_color(30, 210, 80);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;*/
+	tmp = tmp->next;
 	
 	tmp->type = SPHERE;
 	tmp->origin = c_vector(-10, -10, 120);
@@ -43,6 +43,13 @@ t_env	*parse(t_env *e)
 	tmp->color = c_color(10, 160, 20);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
+
+/*	tmp->type = SPHERE;
+	tmp->origin = c_vector(-15, -15, 120);
+	tmp->radius = 10;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;*/
 
 	tmp->type = SPHERE;
 	tmp->origin = c_vector(26, -23, 100);
@@ -55,6 +62,13 @@ t_env	*parse(t_env *e)
 	tmp->origin = c_vector(0, 0, 500);
 	tmp->radius = 50;
 	tmp->color = c_color(100, 50, 180);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = CYLINDER;
+	tmp->origin = c_vector(-100, -100, 120);
+	tmp->radius = 10;
+	tmp->color = c_color(10, 160, 20);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 

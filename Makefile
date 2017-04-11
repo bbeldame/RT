@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
+#    By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/09 21:00:12 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/10 16:04:38 by myernaux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCDIR = ./includes
 SRCDIR = ./srcs/
 SRCS_NAME = color.c create_img.c main.c operation.c \
 	ray.c raytrace.c sphere.c vector.c hooks.c plane.c \
-	parse.c
+	parse.c cylinder.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS_NAME:.c=.o))
 LIBFT = $(addprefix $(LIBFTDIR)/,$(LIBFTA))
 
