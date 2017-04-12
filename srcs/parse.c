@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/11 12:52:07 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/12 19:53:16 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,70 @@ t_env	*parse(t_env *e)
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
-	tmp->type = PLANE;
+/*	tmp->type = PLANE;
 	tmp->origin = c_vector(1, 1, 0);
 	tmp->direction = c_vector(1, 0, 0);
 	tmp->color = c_color(30, 210, 80);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;
+	tmp = tmp->next;*/
 	
 	tmp->type = SPHERE;
-	tmp->origin = c_vector(-10, -10, 120);
-	tmp->radius = 10;
+	tmp->origin = c_vector(-10, -10, 300);
+	tmp->radius = 20;
 	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-20, -10, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-30, -10, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-30, -10, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-40, -10, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-50, -10, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(-60, -10, 300);
+	tmp->radius = 22;
+	tmp->color = c_color(10, 160, 20);
+	tmp->next = (t_object *)semalloc(sizeof(t_object));
+	tmp = tmp->next;
+
+	tmp->type = SPHERE;
+	tmp->origin = c_vector(0, -15, 300);
+	tmp->radius = 20;
+	tmp->color = c_color(255, 0, 127);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
 /*	tmp->type = SPHERE;
-	tmp->origin = c_vector(-15, -15, 120);
-	tmp->radius = 10;
-	tmp->color = c_color(10, 160, 20);
-	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;*/
-
-	tmp->type = SPHERE;
 	tmp->origin = c_vector(26, -23, 100);
 	tmp->radius = 20;
 	tmp->color = c_color(255, 255, 51);
@@ -75,10 +117,10 @@ t_env	*parse(t_env *e)
 	tmp->type = SPHERE;
 	tmp->origin = c_vector(40, 30, 400);
 	tmp->radius = 10;
-	tmp->color = c_color(140, 25, 58);
+	tmp->color = c_color(140, 25, 58);*/
 	tmp->next = NULL;
 
 	e->camera = c_vector(0, 0, -1);
-	e->light = c_vector(800, -800, 1500);
+	e->light = c_vector(200, -200, -1500);
 	return (e);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/11 13:02:48 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/12 19:53:58 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_color		*compute_color_sphere(t_env *e, t_vector poi, t_object sphere)
 ** @todo : lose one variable, without taking away the lisibility
 */
 
-double		intersect_sphere(t_ray ray, t_object sphere)
+/*double		intersect_sphere(t_ray ray, t_object sphere)
 {
 	t_vector	dist;
 	double		b;
@@ -55,4 +55,19 @@ double		intersect_sphere(t_ray ray, t_object sphere)
 	if (distance >= DIST_MAX)
 		return (DIST_MAX);
 	return (distance);
+}*/
+
+/*
+** Test of this implementation : http://www.dreamincode.net/forums/topic/124203-ray-sphere-intersection/
+*/
+
+double		intersect_sphere(t_ray ray, t_object sphere)
+{
+	t_vector dist = vec_ope_min(sphere.origin, ray.origin);
+	double c = get_length(dist);
+	double v = dot(dist, ray.direction);
+	double d = (sphere.radius * sphere.radius) - (c * c - v * v);
+	if (d < 0)
+		return (DIST_MAX);
+	return (v - sqrt(d));
 }
