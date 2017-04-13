@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/12 19:53:58 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/13 21:43:29 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,46 +28,22 @@ t_color		*compute_color_sphere(t_env *e, t_vector poi, t_object sphere)
 }
 
 /*
-** Returns the z coordinate of the first collision with the sphere
-** @todo : lose one variable, without taking away the lisibility
-*/
-
-/*double		intersect_sphere(t_ray ray, t_object sphere)
-{
-	t_vector	dist;
-	double		b;
-	double		c;
-	double		t0;
-	double		t1;
-	double		distance;
-
-	dist = vec_ope_min(sphere.origin, ray.origin);
-	b = dot(ray.direction, dist);
-	c = (b * b) - dot(dist, dist) + (sphere.radius * sphere.radius);
-	if (c < 0)
-		return (DIST_MAX);
-	t0 = b - sqrt(c);
-	t1 = b + sqrt(c);
-	if (t0 > 0)
-		distance = t0;
-	if (t1 > 0)
-		distance = t1;
-	if (distance >= DIST_MAX)
-		return (DIST_MAX);
-	return (distance);
-}*/
-
-/*
-** Test of this implementation : http://www.dreamincode.net/forums/topic/124203-ray-sphere-intersection/
+** Implementation of :
+** http://www.dreamincode.net/forums/topic/124203-ray-sphere-intersection/
 */
 
 double		intersect_sphere(t_ray ray, t_object sphere)
 {
-	t_vector dist = vec_ope_min(sphere.origin, ray.origin);
-	double c = get_length(dist);
-	double v = dot(dist, ray.direction);
-	double d = (sphere.radius * sphere.radius) - (c * c - v * v);
-	if (d < 0)
+	t_vector	dist;
+	double		a;
+	double		b;
+	double		x;
+
+	dist = vec_ope_min(sphere.origin, ray.origin);
+	a = get_length(dist);
+	b = dot(dist, ray.direction);
+	x = (sphere.radius * sphere.radius) - (a * a - b * b);
+	if (x < 0)
 		return (DIST_MAX);
-	return (v - sqrt(d));
+	return (b - sqrt(x));
 }
