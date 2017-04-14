@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/11 09:21:06 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/14 13:58:51 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ void				raytrace(t_env *e)
 	t_vector	dir;
 	t_ray		ray;
 	t_color		*color;
+	unsigned int *img_temp;
 
+	if (!(img_temp = (unsigned int *)malloc(sizeof(unsigned int) * ((W * H)))))
+	//	return (-1);
+	y = 0;
 	y = 0;
 	while (y < H)
 	{
@@ -88,9 +92,10 @@ void				raytrace(t_env *e)
 			ray = c_ray(e->camera, dir);
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
-				((unsigned int *)e->data)[x + y * W] = ret_colors(*color);
+				img_temp[x + y * W] = ret_colors(*color);
 			x++;
 		}
 		y++;
 	}
+	e->img_temp = img_temp;
 }

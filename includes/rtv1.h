@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/10 16:24:11 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/14 14:07:32 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 # include "stdlib.h"
 # include "stdio.h"
 
-# define W 1500
-# define H 800
+# define SS 2
+# define W 1500 * SS 
+# define H 800 * SS
 # define FOV 30
-
 # define KEY_ESC 53
 # define DIST_MAX 20000
 
@@ -76,8 +76,10 @@ typedef struct	s_env
 	char		*data;
 	t_vector	light;
 	t_object	*obj;
+	unsigned int *img_temp;
 }				t_env;
 
+void			super_sampler(t_env *e);
 unsigned int	ret_colors(t_color color);
 t_vector		normalize(t_vector vector);
 t_vector		c_vector(double x, double y, double z);
