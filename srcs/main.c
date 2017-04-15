@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:09 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/14 14:27:50 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/09 21:01:36 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int		main(int ac, char **av)
 		e = set_win_img();
 		e = parse(e);
 		raytrace(e);
-		super_sampler(e);
-		e->win = mlx_new_window(e->mlx, W / SS, H / SS, "RTv1");
+		e->win = mlx_new_window(e->mlx, W, H, "RTv1");
 		mlx_key_hook(e->win, key_hook, e);
 		mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 		mlx_loop(e->mlx);
