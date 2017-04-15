@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/10 16:24:11 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/15 21:52:00 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "../libft/libft.h"
 # include <math.h>
-# include "mlx.h"
-# include "stdlib.h"
-# include "stdio.h"
+# include "../miniLibX/mlx.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # define W 1500
 # define H 800
@@ -76,6 +77,8 @@ typedef struct	s_env
 	char		*data;
 	t_vector	light;
 	t_object	*obj;
+	int			nbline;
+	int			fd;
 }				t_env;
 
 unsigned int	ret_colors(t_color color);
@@ -87,7 +90,7 @@ t_vector		vec_ope_mult(t_vector v1, double d);
 t_vector		vec_ope_div(t_vector v1, double d);
 t_ray			c_ray(t_vector i, t_vector j);
 t_color			c_color(double r, double g, double b);
-t_env			*set_win_img(void);
+void			set_win_img(t_env *e);
 void			raytrace(t_env *e);
 double			dot(t_vector v, t_vector b);
 double			intersect_sphere(t_ray ray, t_object sphere);
@@ -97,9 +100,23 @@ double			get_length(t_vector v);
 double			intersect_plane(t_ray ray, t_object sphere);
 double			intersect_cylinder(t_ray ray, t_object cylinder);
 t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
-t_env			*parse(t_env *e);
 t_color			*copy_color(t_color color);
 t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
 t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
+
+/*
+** Parser
+*/
+
+t_env			*parse(char *scene);
+void			syntax_error(char *line, char *explain, int nbline);
+void			unknown_setting(char *line, int nbline);
+
+void			set_sphere(t_env *e);
+void			set_plane(t_env *e);
+void			set_cylinder(t_env *e);
+void			set_cone(t_env *e);
+void			set_camere(t_env *e);
+void			set_light(t_env *e);
 
 #endif

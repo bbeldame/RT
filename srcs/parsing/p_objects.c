@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_img.c                                       :+:      :+:    :+:   */
+/*   p_objects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/24 16:04:03 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/15 20:03:37 by bbeldame         ###   ########.fr       */
+/*   Created: 2017/04/15 21:47:24 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/15 21:50:35 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "../../includes/rtv1.h"
 
-void		set_win_img(t_env *e)
+void		set_sphere(t_env *e)
 {
-	e->mlx = mlx_init();
-	e->img = mlx_new_image(e->mlx, W, H);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->endian);
+	ft_putstr("Cool sphere");
+}
+
+void		set_plane(t_env *e)
+{
+	ft_putstr("Cool plane");
+}
+
+void		set_cylinder(t_env *e)
+{
+	ft_putstr("Cool cylinder");
+}
+
+void		set_cone(t_env *e)
+{
+	ft_putstr("Cool cone");
 }

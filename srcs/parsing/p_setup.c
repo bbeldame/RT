@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_img.c                                       :+:      :+:    :+:   */
+/*   p_setup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/24 16:04:03 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/15 20:03:37 by bbeldame         ###   ########.fr       */
+/*   Created: 2017/04/15 21:47:21 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/15 21:51:16 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "../../includes/rtv1.h"
 
-void		set_win_img(t_env *e)
+void		set_camera(t_env *e)
 {
-	e->mlx = mlx_init();
-	e->img = mlx_new_image(e->mlx, W, H);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->endian);
+	ft_putstr("Cool camera");
+}
+
+void		set_light(t_env *e)
+{
+	ft_putstr("Cool light");
 }
