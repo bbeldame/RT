@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/14 14:07:32 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/15 18:00:54 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "stdio.h"
 
 # define SS 2
-# define W 1500 * SS 
+# define W 1500 * SS
 # define H 800 * SS
 # define FOV 30
 # define KEY_ESC 53
@@ -69,14 +69,17 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	void		*img;
+	void		*img_ss;
 	int			bpp;
 	int			sl;
+	int			bpp_ss;
+	int			sl_ss;
 	t_vector	camera;
 	int			endian;
 	char		*data;
 	t_vector	light;
 	t_object	*obj;
-	unsigned int *img_temp;
+	char		*data_ss;
 }				t_env;
 
 void			super_sampler(t_env *e);

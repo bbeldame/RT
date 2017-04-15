@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/14 14:31:16 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/15 17:52:48 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,6 @@ t_env	*parse(t_env *e)
 	tmp->next = NULL;
 
 	e->camera = c_vector(0, 0, -1);
-	e->light = c_vector(200, -200, -1500);
+	e->light = c_vector(800, 800, -1500);
 	return (e);
 }
