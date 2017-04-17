@@ -6,13 +6,13 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by myernaux          #+#    #+#             */
-/*   Updated: 2017/04/11 09:21:08 by myernaux         ###   ########.fr       */
+/*   Updated: 2017/04/17 16:24:18 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-/*t_color     *compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder)
+t_color     *compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder)
 {
     t_color     *color;
 
@@ -28,7 +28,6 @@
 
 double      intersect_cylinder(t_ray ray, t_object cylinder)
 {
-    t_vector        dist;
     double          a;
     double          b;
     double          c;
@@ -37,11 +36,10 @@ double      intersect_cylinder(t_ray ray, t_object cylinder)
     double          t1;
     double          distance;
     
-    dist = vec_ope_min(cylinder.origin, ray.origin);
-    a = dot(ray.direction, ray.direction) - ((dot(ray.direction, cylinder.direction)) * (dot(ray.direction, cylinder.direction)));
-    b = (dot(ray.direction, dist) - dot(ray.direction, cylinder.direction) * dot(dist, cylinder.direction)) * 2;
-    c = (dot(dist, dist) - (dot(dist, cylinder.direction) * dot(dist, cylinder.direction))) - (cylinder.radius * cylinder.radius); 
-    d = b * b - 4 * a* c;
+    a = pow(ray.direction.y, 2) + pow(ray.direction.z, 2);
+    b = 2 * (cylinder.origin.y * ray.direction.y) + 2 * (cylinder.origin.z * ray.direction.z);
+    c = pow(cylinder.origin.y, 2) + pow(cylinder.origin.z, 2) - pow(cylinder.radius, 2);
+    d = b * b - 4 * a * c;
     if (d < 0)
         return (DIST_MAX);
     t0 = (-b - sqrt(d)) / (2 * a);
@@ -53,4 +51,4 @@ double      intersect_cylinder(t_ray ray, t_object cylinder)
     if (distance >= DIST_MAX)
         return (DIST_MAX);
     return (distance);
-}*/
+}

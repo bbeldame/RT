@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/17 11:13:22 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/17 16:15:32 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_env	*parse(t_env *e)
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
-	tmp->type = PLANE;
+/*	tmp->type = PLANE;
 	tmp->origin = c_vector(1, 1, 0);
 	tmp->direction = c_vector(1, 0, 0);
 	tmp->color = c_color(30, 210, 80);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;
+	tmp = tmp->next;*/
 	
 	tmp->type = SPHERE;
 	tmp->origin = c_vector(-10, -10, 300);
@@ -105,16 +105,16 @@ t_env	*parse(t_env *e)
 	tmp->radius = 50;
 	tmp->color = c_color(100, 50, 180);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;
+	tmp = tmp->next;*/
 
 	tmp->type = CYLINDER;
-	tmp->origin = c_vector(-100, -100, 120);
-	tmp->radius = 10;
+	tmp->origin = c_vector(0, 0, 500);
+	tmp->radius = 50;
 	tmp->color = c_color(10, 160, 20);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
-	tmp->type = SPHERE;
+/*	tmp->type = SPHERE;
 	tmp->origin = c_vector(40, 30, 400);
 	tmp->radius = 10;
 	tmp->color = c_color(140, 25, 58);*/
