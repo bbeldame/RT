@@ -6,7 +6,7 @@
 #    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/13 19:33:45 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/17 09:48:09 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ INCDIR = ./includes
 SRCDIR = ./srcs/
 SRCS_NAME = color.c create_img.c main.c operation.c \
 	ray.c raytrace.c sphere.c vector.c hooks.c plane.c \
-	parse.c cylinder.c
+	parse.c cylinder.c supersampler.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS_NAME:.c=.o))
 LIBFT = $(addprefix $(LIBFTDIR)/,$(LIBFTA))
 
