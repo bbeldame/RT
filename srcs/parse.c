@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/12 19:53:16 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/17 11:13:22 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_env	*parse(t_env *e)
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
 	tmp = tmp->next;
 
-/*	tmp->type = PLANE;
+	tmp->type = PLANE;
 	tmp->origin = c_vector(1, 1, 0);
 	tmp->direction = c_vector(1, 0, 0);
 	tmp->color = c_color(30, 210, 80);
 	tmp->next = (t_object *)semalloc(sizeof(t_object));
-	tmp = tmp->next;*/
+	tmp = tmp->next;
 	
 	tmp->type = SPHERE;
 	tmp->origin = c_vector(-10, -10, 300);
