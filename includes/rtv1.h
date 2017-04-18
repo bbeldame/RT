@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 12:01:54 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/18 18:00:55 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define W 1500
-# define H 800
+# define SS 2
+# define W 1500 * SS 
+# define H 800 * SS
 # define FOV 30
+# define KEY_ESC 53
+# define DIST_MAX 20000
+# define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) >> 1) + ((a) & (b)) )
 
 # define KEY_ESC 53
 # define DIST_MAX 20000
@@ -77,6 +81,7 @@ typedef struct	s_env
 	char		*data;
 	int			fov;
 	t_vector	light;
+	unsigned int	*img_temp;
 	t_object	*obj;
 	int			nbline;
 	int			fd;
@@ -91,8 +96,9 @@ t_vector		vec_ope_mult(t_vector v1, double d);
 t_vector		vec_ope_div(t_vector v1, double d);
 t_ray			c_ray(t_vector i, t_vector j);
 t_color			c_color(double r, double g, double b);
-void			set_win_img(t_env *e);
-void			raytrace(t_env *e);
+t_env			*set_win_img(void);
+int				raytrace(t_env *e);
+void			super_sampler(t_env *e);
 double			dot(t_vector v, t_vector b);
 double			intersect_sphere(t_ray ray, t_object sphere);
 int				key_hook(int keycode, t_env *e);
