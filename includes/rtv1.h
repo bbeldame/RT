@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 18:00:55 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/18 18:56:57 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_vector		vec_ope_mult(t_vector v1, double d);
 t_vector		vec_ope_div(t_vector v1, double d);
 t_ray			c_ray(t_vector i, t_vector j);
 t_color			c_color(double r, double g, double b);
-t_env			*set_win_img(void);
+void			set_win_img(t_env *e);
 int				raytrace(t_env *e);
 void			super_sampler(t_env *e);
 double			dot(t_vector v, t_vector b);

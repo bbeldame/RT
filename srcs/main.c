@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:09 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 18:04:25 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/18 18:56:30 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		main(int ac, char **av)
 	if (ac != 2 || ft_strncmp(ft_strrev(av[1]), "1vtr.", 5) != 0)
 		err_found("usage: rtv1 input_map.rtv1");
 	e = parse(ft_strrev(av[1]));
-	set_win_img();
+	set_win_img(e);
 	raytrace(e);
 	super_sampler(e);
 	e->win = mlx_new_window(e->mlx, W / SS, H / SS, "RTv1");
