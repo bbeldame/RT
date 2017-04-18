@@ -6,11 +6,30 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/15 21:56:18 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/18 17:39:45 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
+
+/*
+** take : "origin: 3 0 -10"
+** returns "origin" and put "3 0 -10" into arg
+*/
+
+char	*trim_option(t_env *e, char *option, char **arg)
+{
+	char	**line;
+	char	*trimmed_option;
+
+	line = ft_strsplit(option, ':');
+	if (len_of_tab(line) != 2)
+		syntax_error(option, "Multiple settings", e->nbline);
+	trimmed_option = ft_strtrim(line[0]);
+	*arg = ft_strdup(line[1]);
+	free_splited_str(line);
+	return (trimmed_option);
+}
 
 /*
 ** take : "camera:"
@@ -19,7 +38,11 @@
 
 char	*trim_setting(t_env *e, char *line)
 {
+	if (!line)
+		return ("\0");
 	line = ft_strtrim(line);
+	if (line[0] == '#')
+		return (line);
 	if (line[ft_strlen(line) - 1] != ':')
 		syntax_error(line, "Missing ':'", e->nbline);
 	line[ft_strlen(line) - 1] = '\0';
@@ -32,23 +55,22 @@ char	*trim_setting(t_env *e, char *line)
 
 void	dispatch(t_env *e, char *line)
 {
-	int		isHandle;
-
-	isHandle = 0;
 	line = trim_setting(e, line);
-	if (!ft_strcmp(line, "camera") && isHandle++)
+	if (!ft_strcmp(line, "camera"))
 		set_camera(e);
-	if (!ft_strcmp(line, "light") && isHandle++)
+	else if (!ft_strcmp(line, "light"))
 		set_light(e);
-	if (!ft_strcmp(line, "sphere") && isHandle++)
+	else if (!ft_strcmp(line, "sphere"))
 		set_sphere(e);
-	if (!ft_strcmp(line, "plane") && isHandle++)
+	else if (!ft_strcmp(line, "plane"))
 		set_plane(e);
-	if (!ft_strcmp(line, "cylinder") && isHandle++)
+	else if (!ft_strcmp(line, "cylinder"))
 		set_cylinder(e);
-	if (!ft_strcmp(line, "cone") && isHandle++)
+	else if (!ft_strcmp(line, "cone"))
 		set_cone(e);
-	if (!isHandle)
+	else if (line[0] == '\0' || line[0] == '#')
+		return ;
+	else
 		unknown_setting(line, e->nbline);
 }
 
@@ -65,6 +87,7 @@ t_env	*parse(char *scene)
 	if ((e->fd = open(scene, O_RDONLY)) == -1)
 		err_found("open failed");
 	e->nbline = 0;
+	e->obj = NULL;
 	while (get_next_line(e->fd, &line))
 	{
 		e->nbline += 1;

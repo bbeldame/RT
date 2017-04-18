@@ -1,56 +1,33 @@
 camera:
-  x: 0
-  y: 0
-  z: -1
+  origin: 0 0 -1
+  fov: 30
 light:
-  x: 200
-  y: -200
-  z: -1500
+  origin: 700 -300 -1500
 sphere:
-  x: 0
-  y: -15
-  z: 300
+  origin: 0 -15 300
   radius: 20
   color: 255 0 127
 sphere:
-  x: -60
-  y: -10
-  z: 300
+  origin: -60 -10 300
   radius: 22
   color: 10 160 20
 sphere:
-  x: -50
-  y: -10
-  z: 300
+  origin: -50 -10 300
   radius: 20
   color: 10 160 20
 sphere:
-  x: 0
-  y: 0
-  z: 300
+  origin: 0 0 300
   radius: 20
   color: 250 100 20
 sphere:
-  x: -10
-  y: -10
-  z: 300
+  origin: -10 -10 300
   radius: 20
   color: 10 160 20
 sphere:
-  x: -20
-  y: -10
-  z: 300
+  origin: -30 -10 300
   radius: 20
   color: 10 160 20
 sphere:
-  x: -30
-  y: -10
-  z: 300
-  radius: 20
-  color: 10 160 20
-sphere:
-  x: -40
-  y: -10
-  z: 300
+  origin: -40 -10 300
   radius: 20
   color: 10 160 20

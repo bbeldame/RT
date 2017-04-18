@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/15 21:52:00 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/18 12:01:54 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct	s_env
 	t_vector	camera;
 	int			endian;
 	char		*data;
+	int			fov;
 	t_vector	light;
 	t_object	*obj;
 	int			nbline;
@@ -111,6 +112,9 @@ t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
 t_env			*parse(char *scene);
 void			syntax_error(char *line, char *explain, int nbline);
 void			unknown_setting(char *line, int nbline);
+char			*trim_setting(t_env *e, char *line);
+char			*trim_option(t_env *e, char *option, char **arg);
+void			dispatch(t_env *e, char *line);
 
 void			set_sphere(t_env *e);
 void			set_plane(t_env *e);
@@ -118,5 +122,9 @@ void			set_cylinder(t_env *e);
 void			set_cone(t_env *e);
 void			set_camere(t_env *e);
 void			set_light(t_env *e);
+t_vector		set_vector(t_env *e, char *arg);
+t_color			set_color(t_env *e, char *arg);
+
+void			set_last_obj(t_env *e, t_object *obj);
 
 #endif
