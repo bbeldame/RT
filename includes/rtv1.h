@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/17 10:11:03 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/18 18:00:55 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 
 # include "../libft/libft.h"
 # include <math.h>
-# include "mlx.h"
-# include "stdlib.h"
-# include "stdio.h"
+# include "../miniLibX/mlx.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # define SS 2
 # define W 1500 * SS 
@@ -78,9 +79,12 @@ typedef struct	s_env
 	t_vector	camera;
 	int			endian;
 	char		*data;
+	int			fov;
 	t_vector	light;
 	unsigned int	*img_temp;
 	t_object	*obj;
+	int			nbline;
+	int			fd;
 }				t_env;
 
 unsigned int	ret_colors(t_color color);
@@ -103,9 +107,30 @@ double			get_length(t_vector v);
 double			intersect_plane(t_ray ray, t_object sphere);
 double			intersect_cylinder(t_ray ray, t_object cylinder);
 t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
-t_env			*parse(t_env *e);
 t_color			*copy_color(t_color color);
 t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
 t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
+
+/*
+** Parser
+*/
+
+t_env			*parse(char *scene);
+void			syntax_error(char *line, char *explain, int nbline);
+void			unknown_setting(char *line, int nbline);
+char			*trim_setting(t_env *e, char *line);
+char			*trim_option(t_env *e, char *option, char **arg);
+void			dispatch(t_env *e, char *line);
+
+void			set_sphere(t_env *e);
+void			set_plane(t_env *e);
+void			set_cylinder(t_env *e);
+void			set_cone(t_env *e);
+void			set_camere(t_env *e);
+void			set_light(t_env *e);
+t_vector		set_vector(t_env *e, char *arg);
+t_color			set_color(t_env *e, char *arg);
+
+void			set_last_obj(t_env *e, t_object *obj);
 
 #endif

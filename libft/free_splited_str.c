@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_img.c                                       :+:      :+:    :+:   */
+/*   free_splited_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/24 16:04:03 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 18:03:44 by bbeldame         ###   ########.fr       */
+/*   Created: 2017/04/17 13:44:18 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/17 13:44:34 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/rtv1.h"
+#include "libft.h"
 
-t_env		*set_win_img(void)
+void		free_splited_str(char **str)
 {
-	t_env	*e;
+	int i;
 
-	if (!(e = (t_env *)malloc(sizeof(t_env))))
-		return (NULL);
-	e->mlx = mlx_init();
-	e->img = mlx_new_image(e->mlx, W / SS, H / SS);
-	e->data = mlx_get_data_addr(e->img, &e->bpp, &e->sl, &e->endian);
-	return (e);
+	i = 0;
+	while (str[i])
+		ft_memdel((void **)&str[i++]);
+	ft_memdel((void **)&str);
 }

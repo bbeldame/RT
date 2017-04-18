@@ -1,0 +1,33 @@
+camera:
+  origin: 0 0 -1
+  fov: 30
+light:
+  origin: 700 -300 -1500
+sphere:
+  origin: 0 -15 300
+  radius: 20
+  color: 255 0 127
+sphere:
+  origin: -60 -10 300
+  radius: 22
+  color: 10 160 20
+sphere:
+  origin: -50 -10 300
+  radius: 20
+  color: 10 160 20
+sphere:
+  origin: 0 0 300
+  radius: 20
+  color: 250 100 20
+sphere:
+  origin: -10 -10 300
+  radius: 20
+  color: 10 160 20
+sphere:
+  origin: -30 -10 300
+  radius: 20
+  color: 10 160 20
+sphere:
+  origin: -40 -10 300
+  radius: 20
+  color: 10 160 20
