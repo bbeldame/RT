@@ -6,7 +6,7 @@
 /*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/17 09:43:33 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/17 14:16:59 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static double		get_min_dist(t_env *e, t_ray ray, t_object **closest)
 	{
 		dist = (tmp->type == SPHERE) ? intersect_sphere(ray, *tmp) : dist;
 		dist = (tmp->type == PLANE) ? intersect_plane(ray, *tmp) : dist;
-		//	dist = (tmp->type == CYLINDER) ? intersect_cylinder(ray, *tmp) : dist;
+		dist = (tmp->type == CYLINDER) ? intersect_cylinder(ray, *tmp) : dist;
 		if (dist < min_dist)
 		{
 			min_dist = dist;
@@ -63,8 +63,8 @@ static t_color		*get_pxl_color(t_env *e, t_ray ray)
 		color = compute_color_sphere(e, point_of_impact, *obj);
 	if (obj && obj->type == PLANE)
 		color = compute_color_plane(e, point_of_impact, *obj);
-	/*	if (obj && obj->type == CYLINDER)
-		color = compute_color_cylinder(e, point_of_impact, *obj);*/
+	if (obj && obj->type == CYLINDER)
+		color = compute_color_cylinder(e, point_of_impact, *obj);
 	return (color);
 }
 
@@ -77,11 +77,11 @@ int				raytrace(t_env *e)
 	t_color		*color;
 	unsigned int *img_temp;
 
-	if (!(img_temp = (unsigned int *)malloc(sizeof(unsigned int) * ((W * H)))))
+	if (!(img_temp = (unsigned int *)malloc(sizeof(unsigned int) * (((W * H))))))
 		return (-1);
 	y = 0;
 	y = 0;
-	while (y++ < H )
+	while (y < H )
 	{
 		x = 0;
 		while (x < W )
@@ -93,8 +93,11 @@ int				raytrace(t_env *e)
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
 				img_temp[x + y * W] = ret_colors(*color);
+			else 
+				img_temp[x + y * W] = 0;
 			x++;
 		}
+		y++;
 	}
 	e->img_temp = img_temp;
 	return (0);
