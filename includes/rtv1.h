@@ -26,6 +26,12 @@
 # define FOV 30
 # define KEY_ESC 53
 # define DIST_MAX 20000
+
+/*
+** Compute the average color between two 24-bits RGB colors
+** https://www.compuphase.com/graphic/scale3.htm
+*/
+
 # define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) >> 1) + ((a) & (b)) )
 
 # define KEY_ESC 53
