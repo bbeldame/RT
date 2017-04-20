@@ -11,3 +11,7 @@ sphere:
   origin: 10 -15 300
   radius: 20
   color: 255 0 127
+plane:
+  origin: -300 -300 2000
+  direction: -350 -350 2000
+  color: 255 0 0

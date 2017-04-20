@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   p_objects.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/04/15 21:47:24 by bbeldame          #+#    #+#             */
+/*   Updated: 2017/04/19 22:37:51 by ocojeda-         ###   ########.fr       */
+=======
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:47:24 by bbeldame          #+#    #+#             */
 /*   Updated: 2017/04/19 17:09:56 by tfaure           ###   ########.fr       */
+>>>>>>> d6ab423e1af6607b2e3755ac16aebb8087f5b910
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +66,39 @@ void		set_plane(t_env *e)
 		option = trim_option(e, option, &option_arg);
 		if (!ft_strcmp("origin", option))
 			plane->origin = set_vector(e, option_arg);
+<<<<<<< HEAD
+		else if (!ft_strcmp("direction", option))
+			plane->origin = set_vector(e, option_arg);
+		else if (!ft_strcmp("color", option))
+			plane->color = set_color(e, option_arg);
+		else
+			unknown_option(option, e->nbline, "sphere");
+=======
 		else if (!ft_strcmp("radius", option))
 			plane->radius = ft_atoi(option_arg);
 		else if (!ft_strcmp("color", option))
 			plane->color = set_color(e, option_arg);
 		else
 			unknown_option(option, e->nbline, "plane");
+>>>>>>> d6ab423e1af6607b2e3755ac16aebb8087f5b910
 		free(option);
 		set_plane(e);
 	}
 	else
 	{
+<<<<<<< HEAD
+		set_plane_data(plane);
+		set_last_obj(e, plane);
+		plane = NULL;
+		dispatch(e, plane);
+	}
+		ft_putstr("Cool plane");
+=======
 		set_last_obj(e, plane);
 		plane = NULL;
 		dispatch(e, option);
 	}
+>>>>>>> d6ab423e1af6607b2e3755ac16aebb8087f5b910
 }
 
 void		set_cylinder(t_env *e)

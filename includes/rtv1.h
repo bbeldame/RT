@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 18:56:57 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/19 21:56:58 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ typedef struct	s_color
 typedef struct	s_object
 {
 	int				type;
-	t_vector		origin;
 	double			radius;
+	double 			d;
+	t_vector		normal;
+	t_vector		origin;
 	t_vector		direction;
 	t_color			color;
 	struct s_object	*next;
@@ -127,9 +129,9 @@ void			unknown_setting(char *line, int nbline);
 char			*trim_setting(t_env *e, char *line);
 char			*trim_option(t_env *e, char *option, char **arg);
 void			dispatch(t_env *e, char *line);
-
 void			set_sphere(t_env *e);
 void			set_plane(t_env *e);
+void			set_plane_data(t_object *plane);
 void			set_cylinder(t_env *e);
 void			set_cone(t_env *e);
 void			set_camere(t_env *e);
