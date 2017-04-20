@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/19 21:56:58 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/20 03:51:38 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void			set_plane(t_env *e);
 void			set_plane_data(t_object *plane);
 void			set_cylinder(t_env *e);
 void			set_cone(t_env *e);
-void			set_camere(t_env *e);
+void			set_camera(t_env *e);
 void			set_light(t_env *e);
 t_vector		set_vector(t_env *e, char *arg);
 t_color			set_color(t_env *e, char *arg);
