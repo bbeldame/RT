@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/20 03:25:16 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/20 21:58:02 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int				raytrace(t_env *e)
 {
 	int			x;
 	int			y;
-	t_vector	dir;
 	t_ray		ray;
+	t_vector	pov;
 	t_color		*color;
 	unsigned int *img_temp;
 
@@ -86,10 +86,8 @@ int				raytrace(t_env *e)
 		x = 0;
 		while (x < W )
 		{
-			dir = normalize(c_vector(x - (W / 2), y - (H / 2),
-						(W / (2 * tan(FOV / 2))) * -1));
-			dir = normalize(vec_ope_min(dir, e->camera));
-			ray = c_ray(e->camera, dir);
+			pov = c_vector((double)x / SS, (double)y / SS, -1000);
+			ray = c_ray(pov, c_vector(0, 0, 1));
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
 				img_temp[x + y * W] = ret_colors(*color);
