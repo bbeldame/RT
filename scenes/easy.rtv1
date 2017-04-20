@@ -1,6 +1,3 @@
-camera:
-  origin: 0 0 -1
-  fov: 30
 light:
   origin: 0 0 0
 sphere:
