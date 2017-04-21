@@ -48,8 +48,12 @@ void		set_plane(t_env *e)
 		option = trim_option(e, option, &option_arg);
 		if (!ft_strcmp("origin", option))
 			plane->origin = set_vector(e, option_arg);
+		else if (!ft_strcmp("normal", option))
+			plane->normal = set_vector(e, option_arg);
+		else if (!ft_strcmp("extra", option))
+			plane->extra = set_vector(e, option_arg);
 		else if (!ft_strcmp("direction", option))
-			plane->origin = set_vector(e, option_arg);
+			plane->direction = set_vector(e, option_arg);
 		else if (!ft_strcmp("color", option))
 			plane->color = set_color(e, option_arg);
 		else

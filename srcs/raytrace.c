@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/20 21:58:02 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/21 18:16:25 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_color		*get_pxl_color(t_env *e, t_ray ray)
 	if (obj && obj->type == SPHERE)
 		color = compute_color_sphere(e, point_of_impact, *obj);
 	if (obj && obj->type == PLANE)
-		color = compute_color_sphere(e, point_of_impact, *obj);
+		color = compute_color_plane(e, point_of_impact, *obj);
 	if (obj && obj->type == CYLINDER)
 		color = compute_color_cylinder(e, point_of_impact, *obj);
 	return (color);

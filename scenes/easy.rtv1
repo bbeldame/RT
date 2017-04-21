@@ -12,10 +12,12 @@ sphere:
   origin: 1300 700 300
   radius: 100
   color: 255 0 127
-#sphere:
-#  origin: 800 300 250
-#  radius: 300
-#  color: 0 255 127
+plane:
+  origin: 0 0 700
+  direction: 100 0 710
+  normal: 100 100 710
+  extra: 0 0 700
+  color: 0 255 127
 #sphere:
 #  origin: 800 400 300
 #  radius: 300

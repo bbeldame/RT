@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/20 03:51:38 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/21 15:24:36 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct	s_object
 	t_vector		normal;
 	t_vector		origin;
 	t_vector		direction;
+	t_vector		extra;
 	t_color			color;
 	struct s_object	*next;
 }				t_object;
