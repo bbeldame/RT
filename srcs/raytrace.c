@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/21 18:16:25 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/23 01:16:47 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int				raytrace(t_env *e)
 		x = 0;
 		while (x < W )
 		{
-			pov = c_vector((double)x / SS, (double)y / SS, -1000);
+			pov = c_vector((double)x / SS, (double)y / SS, 0);
 			ray = c_ray(pov, c_vector(0, 0, 1));
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
