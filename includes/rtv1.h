@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/21 15:24:36 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/23 01:15:48 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@
 */
 
 # define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) >> 1) + ((a) & (b)) )
-
-# define KEY_ESC 53
-# define DIST_MAX 20000
 
 enum	e_type
 {
@@ -69,11 +66,9 @@ typedef struct	s_object
 {
 	int				type;
 	double			radius;
-	double 			d;
 	t_vector		normal;
 	t_vector		origin;
 	t_vector		direction;
-	t_vector		extra;
 	t_color			color;
 	struct s_object	*next;
 }				t_object;

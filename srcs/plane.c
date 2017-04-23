@@ -3,89 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 20:08:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/04/21 18:12:40 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/23 02:35:28 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-/*
-** NOT DONE
-*/
-
-t_vector set_normal(t_vector a, t_vector b)
-{
-	t_vector vp;
-	vp = c_vector(a.y * b.z - a.z * b.y, 
-				   a.z * b.x - a.x * b.z, 
-				  a.x * b.y - a.y * b.x);
-	return(normalize(vp));
-}
-
-void		set_plane_data(t_object *plane)
-{
-	plane->normal = set_normal(vec_ope_min(plane->direction, plane->origin), 
-	vec_ope_min(plane->normal, plane->origin));
-	plane->d = -(plane->normal.x * plane->extra.x + 
-				plane->normal.y * plane->extra.y + 
-				plane->normal.z * plane->extra.z);
-}
-
 t_color		*compute_color_plane(t_env *e, t_vector poi, t_object plane)
 {
-	t_color		*color;
-
-	color = malloc(200);
-	(void)poi;
-	(void)plane;
-	(void)e;
-	color->r = 0;
-	color->g = 250;
-	color->b = 0;
-	return (color);/*
 	t_vector	dist_to_eyes;
 	t_vector	dist_to_light;
 	double		intensity;
 	t_color		*color;
 
 	color = copy_color(plane.color);
-	dist_to_eyes = poi;
 	dist_to_light = vec_ope_min(e->light, poi);
-	intensity = 0.5 * dot(dist_to_eyes, dist_to_light);
+	//printf("Dist_to_light = %f\n", get_length(dist_to_light));
+	intensity = 0.5 * ft_map(get_length(dist_to_light), 2000, 500, 200);
+	//printf("Intensity for plane = %f\n", intensity);
 	color_mult(color, intensity);
-	return (color);*/
+	return (color);
 }
+
+/*
+** Implementation of 
+** http://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
+*/
 
 double		intersect_plane(t_ray ray, t_object plane)
 {
-	t_vector	normal;
-	double		vo;
-	double		vd;
-	double 		t;
+	double		d;
+	double		dist;
+	t_vector	vector_distance;
 
-	vd = dot(plane.normal, ray.direction);
-	if (vd == 0)
-		return (DIST_MAX);
-	if(vd < 0)
+	d = dot(plane.normal, ray.direction);
+	if (fabs(d) > 0.0001)
 	{
-		normal = c_vector(-plane.normal.x, 
-		-plane.normal.y, -plane.normal.z);
-		vo = -(dot(normal, ray.origin) - plane.d);
-		t = vo/vd;
-		if(t < 0)
-		return (DIST_MAX);
-		return t;
+		vector_distance = vec_ope_min(plane.origin, ray.origin);
+		dist = dot(vector_distance, plane.normal) / d;
+		return (dist);
 	}
-	else 
-	normal = plane.normal;
-	vo = -(dot(normal, ray.origin) + plane.d);
-	t = vo/vd;
-	ft_putchar('\n');
-	ft_putnbr((int)t);
-	if(t < 0)
-		return (DIST_MAX);
-	return (t);
+	return (DIST_MAX);
 }
