@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/23 20:17:57 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/04/24 01:01:55 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,13 @@ typedef struct	s_color
 	double		b;
 }				t_color;
 
+typedef struct		s_light
+{
+	double			intensity;
+	t_vector		origin;
+	struct s_light	*next;
+}					t_light;
+
 typedef struct	s_object
 {
 	int				type;
@@ -84,8 +91,7 @@ typedef struct	s_env
 	int			endian;
 	char		*data;
 	int			fov;
-	double		light_intens;
-	t_vector	light;
+	t_light		*light;
 	unsigned int	*img_temp;
 	t_object	*obj;
 	int			nbline;
@@ -135,7 +141,8 @@ void			set_camera(t_env *e);
 void			set_light(t_env *e);
 t_vector		set_vector(t_env *e, char *arg);
 t_color			set_color(t_env *e, char *arg);
-
-void			set_last_obj(t_env *e, t_object *obj);
+void			unknown_option(char *line, int nbline, char *caller);
+void			set_first_obj(t_env *e, t_object *obj);
+void			set_first_light(t_env *e, t_light *light);
 
 #endif

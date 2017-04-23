@@ -6,17 +6,30 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 09:33:24 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/22 23:16:43 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/24 01:00:46 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
 
 /*
-** set last obj to the objects struct
+** set first light to the lights struct
 */
 
-void			set_last_obj(t_env *e, t_object *obj)
+void			set_first_light(t_env *e, t_light *light)
+{
+	t_light		*tmp;
+
+	tmp = light;
+	tmp->next = e->light;
+	e->light = tmp;
+}
+
+/*
+** set first obj to the objects struct
+*/
+
+void			set_first_obj(t_env *e, t_object *obj)
 {
 	t_object	*tmp;
 

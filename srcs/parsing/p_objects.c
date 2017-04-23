@@ -27,7 +27,7 @@ void		set_sphere(t_env *e)
 	}
 	else
 	{
-		set_last_obj(e, sphere);
+		set_first_obj(e, sphere);
 		sphere = NULL;
 		dispatch(e, option);
 	}
@@ -59,7 +59,7 @@ void		set_plane(t_env *e)
 	}
 	else
 	{
-		set_last_obj(e, plane);
+		set_first_obj(e, plane);
 		plane = NULL;
 		dispatch(e, option);
 	}
@@ -91,7 +91,7 @@ void		set_cylinder(t_env *e)
 	}
 	else
 	{
-		set_last_obj(e, cylinder);
+		set_first_obj(e, cylinder);
 		cylinder = NULL;
 		dispatch(e, option);
 	}
@@ -123,7 +123,7 @@ void		set_cone(t_env *e)
 	}
 	else
 	{
-		set_last_obj(e, cone);
+		set_first_obj(e, cone);
 		cone = NULL;
 		dispatch(e, option);
 	}
