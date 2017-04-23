@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_setup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:47:21 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/18 17:42:20 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 20:21:53 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void		set_light(t_env *e)
 		option = trim_option(e, option, &option_arg);
 		if (!ft_strcmp("origin", option))
 			e->light = set_vector(e, option_arg);
+		else if (!ft_strcmp("intensity", option))
+			e->light_intens = ft_atof(option_arg);
 		free(option);
 		set_light(e);
 	}

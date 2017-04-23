@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/13 21:43:29 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 20:23:08 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 t_color		*compute_color_sphere(t_env *e, t_vector poi, t_object sphere)
 {
-	t_vector	dist_to_eyes;
-	t_vector	dist_to_light;
+	double		dist_to_light;
+	t_vector	vec_to_eyes;
+	t_vector	vec_to_light;
 	double		intensity;
 	t_color		*color;
 
 	color = copy_color(sphere.color);
-	dist_to_eyes = normalize(vec_ope_min(poi, sphere.origin));
-	dist_to_light = vec_ope_min(e->light, poi);
-	intensity = 0.5 * dot(dist_to_eyes, dist_to_light);
+	vec_to_eyes = normalize(vec_ope_min(poi, sphere.origin));
+	vec_to_light = vec_ope_min(e->light, poi);
+	dist_to_light = get_length(vec_to_light);
+	intensity = (dot(vec_to_eyes, normalize(vec_to_light)) * ft_map(dist_to_light, 2000 * e->light_intens, 500, 200));
 	color_mult(color, intensity);
 	return (color);
 }

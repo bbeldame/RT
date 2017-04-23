@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 20:08:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/04/23 02:35:28 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 20:23:22 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_color		*compute_color_plane(t_env *e, t_vector poi, t_object plane)
 {
-	t_vector	dist_to_eyes;
 	t_vector	dist_to_light;
 	double		intensity;
 	t_color		*color;
@@ -22,8 +21,8 @@ t_color		*compute_color_plane(t_env *e, t_vector poi, t_object plane)
 	color = copy_color(plane.color);
 	dist_to_light = vec_ope_min(e->light, poi);
 	//printf("Dist_to_light = %f\n", get_length(dist_to_light));
-	intensity = 0.5 * ft_map(get_length(dist_to_light), 2000, 500, 200);
-	//printf("Intensity for plane = %f\n", intensity);
+	intensity = 0.5 * ft_map(get_length(dist_to_light), 2000 * e->light_intens, 500, 200);
+	// printf("Intensity for plane = %f\n", intensity);
 	color_mult(color, intensity);
 	return (color);
 }

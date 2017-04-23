@@ -1,6 +1,6 @@
 light:
-  origin: 750 300 -900
-
+  origin: 750 300 -200
+  intensity: 0.5
 # BOX #
 plane:
   origin: 0 800 0
