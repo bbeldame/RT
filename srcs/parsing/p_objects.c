@@ -50,10 +50,6 @@ void		set_plane(t_env *e)
 			plane->origin = set_vector(e, option_arg);
 		else if (!ft_strcmp("normal", option))
 			plane->normal = set_vector(e, option_arg);
-		else if (!ft_strcmp("extra", option))
-			plane->extra = set_vector(e, option_arg);
-		else if (!ft_strcmp("direction", option))
-			plane->direction = set_vector(e, option_arg);
 		else if (!ft_strcmp("color", option))
 			plane->color = set_color(e, option_arg);
 		else
@@ -63,11 +59,9 @@ void		set_plane(t_env *e)
 	}
 	else
 	{
-
-		set_plane_data(plane);
 		set_last_obj(e, plane);
 		plane = NULL;
-		dispatch(e, plane);
+		dispatch(e, option);
 	}
 }
 

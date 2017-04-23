@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 09:33:24 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/18 17:43:25 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/22 23:16:43 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void			set_last_obj(t_env *e, t_object *obj)
 /*
 ** this function is only here to test that
 ** the color are between 0 and 255
-** @todo : ft_atof
 */
 
 double			get_color(t_env *e, char *str)
@@ -43,7 +42,6 @@ double			get_color(t_env *e, char *str)
 
 /*
 ** create a vector from "30 0 120"
-** @todo : ft_atof
 */
 
 t_vector		set_vector(t_env *e, char *arg)
@@ -55,9 +53,9 @@ t_vector		set_vector(t_env *e, char *arg)
     if (len_of_tab(coor) != 3)
         syntax_error(arg, "Vector must have 3 points", e->nbline);
 	vector = c_vector(
-		(double)ft_atoi(coor[0]),
-		(double)ft_atoi(coor[1]),
-		(double)ft_atoi(coor[2])
+		ft_atof(coor[0]),
+		ft_atof(coor[1]),
+		ft_atof(coor[2])
 	);
 	free_splited_str(coor);
 	return (vector);

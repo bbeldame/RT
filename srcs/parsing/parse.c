@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/18 17:39:45 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 02:22:07 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*trim_option(t_env *e, char *option, char **arg)
 
 char	*trim_setting(t_env *e, char *line)
 {
-	if (!line)
+	if (!line || line[0] == '\0')
 		return ("\0");
 	line = ft_strtrim(line);
 	if (line[0] == '#')
@@ -68,7 +68,7 @@ void	dispatch(t_env *e, char *line)
 		set_cylinder(e);
 	else if (!ft_strcmp(line, "cone"))
 		set_cone(e);
-	else if (line[0] == '\0' || line[0] == '#')
+	else if (!line || line[0] == '\0' || line[0] == '#')
 		return ;
 	else
 		unknown_setting(line, e->nbline);
