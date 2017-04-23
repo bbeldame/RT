@@ -6,12 +6,12 @@
 #    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/18 18:01:37 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/24 01:03:43 by bbeldame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
-FLAGS = -Wall -Wextra # @todo : Add -Werror Flag
+FLAGS = -Wall -Wextra # @todo : Add -Werror Flag, Uncomment Minilibx clean
 MLX = ./minilibX/
 MLX_LIB = $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./miniLibX
@@ -60,7 +60,7 @@ $(NAME): $(LIBFT) $(MLXA) $(OBJDIR) $(OBJS)
 clean:
 	@rm -rf $(OBJDIR)
 	@make clean -C $(LIBFTDIR)
-	@make --silent clean -C $(MLX)
+#	@make --silent clean -C $(MLX)
 
 fclean:	clean
 	@rm -f $(NAME)
