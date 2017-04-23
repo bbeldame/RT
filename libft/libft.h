@@ -6,15 +6,17 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:05:35 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/22 23:05:32 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 20:48:49 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# include "unistd.h"
-# include "stdlib.h"
-# include "string.h"
+
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include <string.h>
 
 # define BUFF_SIZE 2017
 # define NBMAXFD 42
@@ -36,7 +38,7 @@ char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *str);
+intmax_t			ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);

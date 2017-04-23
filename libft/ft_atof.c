@@ -6,18 +6,17 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:43:49 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/22 23:07:23 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 20:58:10 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdio.h"
 
-static double	zero_dot(int nbr)
+static double	zero_dot(intmax_t nbr)
 {
-	int		digits;
-	int		diviser;
-	int		tmpnbr;
+	int				digits;
+	int				diviser;
+	intmax_t		tmpnbr;
 
 	digits = 0;
 	diviser = 10;
@@ -35,7 +34,7 @@ static double	zero_dot(int nbr)
 double			ft_atof(const char *str)
 {
 	double		res;
-	int			after_comma;
+	intmax_t	after_comma;
 	int			i;
 
 	res = (double)ft_atoi(str);
