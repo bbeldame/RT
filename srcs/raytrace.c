@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/23 01:16:47 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/23 14:02:08 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ static t_color		*get_pxl_color(t_env *e, t_ray ray)
 	return (color);
 }
 
+/*
+** The camera is always pointing towards z only
+** The camera is set to x y 0 for simplicity
+*/
+
 int				raytrace(t_env *e)
 {
 	int			x;
@@ -77,14 +82,12 @@ int				raytrace(t_env *e)
 	t_color		*color;
 	unsigned int *img_temp;
 
-	if (!(img_temp = (unsigned int *)malloc(sizeof(unsigned int) * (((W * H))))))
-		return (-1);
+	img_temp = (unsigned int *)semalloc(sizeof(unsigned int) * (W * H));
 	y = 0;
-	y = 0;
-	while (y < H )
+	while (y < H)
 	{
 		x = 0;
-		while (x < W )
+		while (x < W)
 		{
 			pov = c_vector((double)x / SS, (double)y / SS, 0);
 			ray = c_ray(pov, c_vector(0, 0, 1));
@@ -98,5 +101,5 @@ int				raytrace(t_env *e)
 		y++;
 	}
 	e->img_temp = img_temp;
-	return (0);
+	return (1);
 }
