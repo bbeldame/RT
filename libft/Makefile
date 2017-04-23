@@ -6,7 +6,7 @@
 #    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 16:27:20 by tfaure            #+#    #+#              #
-#    Updated: 2017/04/18 09:36:46 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/22 23:05:45 by bbeldame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = ft_putchar.c ft_putstr.c ft_putnbr.c ft_putendl.c ft_strlen.c \
 	  ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c \
 	  ft_lstmap.c ft_strchr.c ft_strrchr.c ft_strtolower.c ft_strtoupper.c \
 	  ft_strrev.c ft_max.c ft_min.c ft_realloc.c get_next_line.c ft_map.c \
-	  err_found.c semalloc.c free_splited_str.c len_of_tab.c
+	  err_found.c semalloc.c free_splited_str.c len_of_tab.c ft_atof.c
 
 
 CFLAGS = -Wall -Wextra -Werror

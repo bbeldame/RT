@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:05:35 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/18 14:10:16 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/22 23:05:32 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ void				*semalloc(size_t size);
 void				err_found(char *str);
 void				free_splited_str(char **str);
 int					len_of_tab(char **tab);
+double				ft_atof(const char *str);
 
 #endif
