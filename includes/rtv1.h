@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/24 01:01:55 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/24 13:40:09 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 
-# define SS 2
+/*
+** if we want to switch on or off supersampler we need to change
+** SS value. 1 for off, 2 for on.
+*/
+
+# define SS 1
+//# define SS 2
 # define W 1500 * SS 
 # define H 800 * SS
 # define FOV 30
