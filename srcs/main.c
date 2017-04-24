@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:09 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/24 13:22:03 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/24 20:08:17 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int		main(int ac, char **av)
 	raytrace(e);
 	printf("Rendering over in %f seconds \n", (double)(clock() - tic) / CLOCKS_PER_SEC);
 	tic = clock();
-	super_sampler(e);
+	if (e->setup.supersampling)
+		super_sampler(e);
+	else
+		anti_supersampler(e);
 	printf("Super Sampler over in %f seconds \n", (double)(clock() - tic) / CLOCKS_PER_SEC);
 	e->win = mlx_new_window(e->mlx, W / SS, H / SS, "RTv1");
 	mlx_key_hook(e->win, key_hook, e);

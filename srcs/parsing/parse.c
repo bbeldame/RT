@@ -6,11 +6,16 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/23 02:22:07 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/24 20:17:05 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
+
+void	set_default(t_env *e)
+{
+	e->setup.supersampling = DEFAULT_SUPERSAMPLING;
+}
 
 /*
 ** take : "origin: 3 0 -10"
@@ -36,17 +41,21 @@ char	*trim_option(t_env *e, char *option, char **arg)
 ** returns "camera"
 */
 
-char	*trim_setting(t_env *e, char *line)
+char	*trim_setting(t_env *e, char *setting)
 {
-	if (!line || line[0] == '\0')
+	char	*trimmed_setting;
+
+	if (!setting || setting[0] == '\0')
 		return ("\0");
-	line = ft_strtrim(line);
-	if (line[0] == '#')
-		return (line);
-	if (line[ft_strlen(line) - 1] != ':')
-		syntax_error(line, "Missing ':'", e->nbline);
-	line[ft_strlen(line) - 1] = '\0';
-	return (line);
+	trimmed_setting = ft_strtrim(setting);
+	if (trimmed_setting[0] == '#')
+		return (trimmed_setting);
+	if (trimmed_setting[ft_strlen(trimmed_setting) - 1] != ':' &&
+		trimmed_setting[ft_strlen(trimmed_setting) - 1] != '1' &&
+		trimmed_setting[ft_strlen(trimmed_setting) - 1] != '0')
+		syntax_error(setting, "Missing ':'", e->nbline);
+	trimmed_setting[ft_strlen(trimmed_setting) - 1] = '\0';
+	return (trimmed_setting);
 }
 
 /*
@@ -55,23 +64,26 @@ char	*trim_setting(t_env *e, char *line)
 
 void	dispatch(t_env *e, char *line)
 {
-	line = trim_setting(e, line);
-	if (!ft_strcmp(line, "camera"))
-		set_camera(e);
-	else if (!ft_strcmp(line, "light"))
+	char	*setting;
+
+	setting = trim_setting(e, line);
+	if (!ft_strcmp(setting, "supersampling: "))
+		set_supersampling(e, line);
+	else if (!ft_strcmp(setting, "light"))
 		set_light(e);
-	else if (!ft_strcmp(line, "sphere"))
+	else if (!ft_strcmp(setting, "sphere"))
 		set_sphere(e);
-	else if (!ft_strcmp(line, "plane"))
+	else if (!ft_strcmp(setting, "plane"))
 		set_plane(e);
-	else if (!ft_strcmp(line, "cylinder"))
+	else if (!ft_strcmp(setting, "cylinder"))
 		set_cylinder(e);
-	else if (!ft_strcmp(line, "cone"))
+	else if (!ft_strcmp(setting, "cone"))
 		set_cone(e);
-	else if (!line || line[0] == '\0' || line[0] == '#')
+	else if (!setting || setting[0] == '\0' || setting[0] == '#')
 		return ;
 	else
-		unknown_setting(line, e->nbline);
+		unknown_setting(setting, e->nbline);
+	free(setting);
 }
 
 /*
@@ -84,6 +96,7 @@ t_env	*parse(char *scene)
 	char		*line;
 
 	e = (t_env *)semalloc(sizeof(t_env));
+	set_default(e);
 	if ((e->fd = open(scene, O_RDONLY)) == -1)
 		err_found("open failed");
 	e->nbline = 0;

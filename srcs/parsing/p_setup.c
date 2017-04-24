@@ -6,30 +6,47 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 21:47:21 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/24 01:02:14 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/24 19:52:48 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/rtv1.h"
 
-void		set_camera(t_env *e)
-{
-	char	*option;
-	char	*option_arg;
+/*
+**	void		set_camera(t_env *e)
+**	{
+**		char	*option;
+**		char	*option_arg;
+**	
+**		e->nbline++;
+**		if (get_next_line(e->fd, &option) == 1 && option[0] == ' ')
+**		{
+**			option = trim_option(e, option, &option_arg);
+**			if (!ft_strcmp("origin", option))
+**				e->camera = set_vector(e, option_arg);
+**			else if (!ft_strcmp("fov", option))
+**				e->fov = ft_atoi(option_arg);
+**			free(option);
+**			set_camera(e);
+**		}
+**		else
+**			dispatch(e, option);
+**	}
+*/
 
-	e->nbline++;
-	if (get_next_line(e->fd, &option) == 1 && option[0] == ' ')
-	{
-		option = trim_option(e, option, &option_arg);
-		if (!ft_strcmp("origin", option))
-			e->camera = set_vector(e, option_arg);
-		else if (!ft_strcmp("fov", option))
-			e->fov = ft_atoi(option_arg);
-		free(option);
-		set_camera(e);
-	}
+void		set_supersampling(t_env *e, char *line)
+{
+	char			**line_splited;
+	int				tmp;
+
+	line_splited = ft_strsplit(line, ' ');
+	tmp = ft_atoi(line_splited[1]);
+	if (tmp != 0 && tmp != 1)
+		syntax_error(line, "Supersampling has to be set to 0 or 1", e->nbline);
 	else
-		dispatch(e, option);
+		e->setup.supersampling = tmp;
+	free_splited_str(line_splited);
+	return ;
 }
 
 void		set_light(t_env *e)

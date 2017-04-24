@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/24 13:40:09 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/24 20:12:08 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 ** SS value. 1 for off, 2 for on.
 */
 
-# define SS 1
-//# define SS 2
+# define DEFAULT_SUPERSAMPLING 0
+# define SS (e->setup.supersampling + 1)
 # define W 1500 * SS 
 # define H 800 * SS
 # define FOV 30
@@ -47,6 +47,14 @@ enum	e_type
 	CYLINDER,
 	CONE
 };
+
+typedef struct	s_setup
+{
+	int			supersampling;
+	int			bpp;
+	int			sl;
+	int			endian;
+}				t_setup;
 
 typedef struct	s_vector
 {
@@ -91,12 +99,9 @@ typedef struct	s_env
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			bpp;
-	int			sl;
+	t_setup		setup;
 	t_vector	camera;
-	int			endian;
 	char		*data;
-	int			fov;
 	t_light		*light;
 	unsigned int	*img_temp;
 	t_object	*obj;
@@ -116,6 +121,7 @@ t_color			c_color(double r, double g, double b);
 void			set_win_img(t_env *e);
 int				raytrace(t_env *e);
 void			super_sampler(t_env *e);
+void			anti_supersampler(t_env *e);
 double			dot(t_vector v, t_vector b);
 double			intersect_sphere(t_ray ray, t_object sphere);
 int				key_hook(int keycode, t_env *e);
@@ -135,7 +141,7 @@ t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
 t_env			*parse(char *scene);
 void			syntax_error(char *line, char *explain, int nbline);
 void			unknown_setting(char *line, int nbline);
-char			*trim_setting(t_env *e, char *line);
+char			*trim_setting(t_env *e, char *setting);
 char			*trim_option(t_env *e, char *option, char **arg);
 void			dispatch(t_env *e, char *line);
 void			set_sphere(t_env *e);
@@ -145,6 +151,7 @@ void			set_cylinder(t_env *e);
 void			set_cone(t_env *e);
 void			set_camera(t_env *e);
 void			set_light(t_env *e);
+void			set_supersampling(t_env *e, char *line);
 t_vector		set_vector(t_env *e, char *arg);
 t_color			set_color(t_env *e, char *arg);
 void			unknown_option(char *line, int nbline, char *caller);
