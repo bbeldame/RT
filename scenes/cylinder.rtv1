@@ -1,5 +1,5 @@
 light:
-  origin: 750 300 -200
+  origin: 750 1200 -200
   intensity: 0.5
 # BOX #
 cylinder:
