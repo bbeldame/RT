@@ -1,0 +1,8 @@
+light:
+  origin: 750 300 -200
+  intensity: 0.5
+# BOX #
+cylinder:
+  origin: 750 400 300
+  radius: 1
+  color: 0 255 0
