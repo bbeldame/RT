@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
+#    By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/24 01:03:43 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/04/27 20:23:20 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,11 +22,11 @@ MLXA = ./miniLibX/libmlx.a
 OBJDIR = ./objs/
 INCDIR = ./includes
 SRCDIR = ./srcs/
-SRCS_NAME = color.c create_img.c main.c operation.c \
+SRCS_NAME = color.c cone.c create_img.c main.c operation.c \
 	ray.c raytrace.c sphere.c vector.c hooks.c plane.c \
 	parsing/parse.c cylinder.c parsing/p_errors.c \
 	parsing/p_objects.c parsing/p_setup.c parsing/p_utils.c \
-	supersampler.c
+	supersampler.c 
 OBJS = $(SRCS_NAME:.c=.o)
 OBJS := $(notdir $(OBJS))
 OBJS := $(addprefix $(OBJDIR), $(OBJS))

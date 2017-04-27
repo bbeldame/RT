@@ -113,7 +113,9 @@ void		set_cone(t_env *e)
 	if (get_next_line(e->fd, &option) == 1 && option[0] == ' ')
 	{
 		option = trim_option(e, option, &option_arg);
-		if (!ft_strcmp("origin", option))
+		if (!ft_strcmp("normal", option))
+			cone->normal = set_vector(e, option_arg);
+		else if(!ft_strcmp("origin", option))
 			cone->origin = set_vector(e, option_arg);
 		else if (!ft_strcmp("radius", option))
 			cone->radius = ft_atoi(option_arg);
@@ -127,6 +129,7 @@ void		set_cone(t_env *e)
 	else
 	{
 		set_first_obj(e, cone);
+		cone->normal = normalize(cone->normal);
 		cone = NULL;
 		dispatch(e, option);
 	}
