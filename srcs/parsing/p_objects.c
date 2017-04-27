@@ -80,6 +80,8 @@ void		set_cylinder(t_env *e)
 		option = trim_option(e, option, &option_arg);
 		if (!ft_strcmp("origin", option))
 			cylinder->origin = set_vector(e, option_arg);
+		else if(!ft_strcmp("normal", option))
+			cylinder->normal = set_vector(e, option_arg);
 		else if (!ft_strcmp("radius", option))
 			cylinder->radius = ft_atoi(option_arg);
 		else if (!ft_strcmp("color", option))
@@ -91,6 +93,7 @@ void		set_cylinder(t_env *e)
 	}
 	else
 	{
+		cylinder->normal = normalize(vec_ope_min(cylinder->origin, cylinder->normal));
 		set_first_obj(e, cylinder);
 		cylinder = NULL;
 		dispatch(e, option);

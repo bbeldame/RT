@@ -6,7 +6,7 @@
 /*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by myernaux          #+#    #+#             */
-/*   Updated: 2017/04/26 17:50:51 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/27 18:49:08 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ double      intersect_cylinder(t_ray ray, t_object cylinder)
     float		    det;
     float           t0;
     float           t1;
-    a = pow(ray.direction.x, 2) + pow(ray.direction.z, 2);
-    b = 2 * (cylinder.origin.x * ray.direction.x) + 2 * (cylinder.origin.z * ray.direction.z);
-   c = ray.origin.x * ray.origin.x + ray.origin.y * ray.origin.y + 
-        cylinder.origin.x * cylinder.origin.x +
-        cylinder.origin.y * cylinder.origin.y - 
-        cylinder.radius * cylinder.radius - 
-        2 * (ray.origin.x * cylinder.origin.x
-			+ ray.origin.y * cylinder.origin.y);
+    t_vector        x = vec_ope_min(cylinder.origin, ray.origin);
+    a = dot(ray.direction, ray.direction) - 
+        dot(ray.direction, cylinder.normal);
+    c = dot(x, x) - pow(dot(x, cylinder.normal) , 2) - 
+        pow(cylinder.radius, 2);
+    b = 2 * (dot(ray.direction, x) - 
+    (dot(ray.direction, cylinder.normal) * dot(x, cylinder.normal)));
     det = b * b - 4 * a * c;
     t0 = 0;t1 = 0;
     if (det >= 0)
