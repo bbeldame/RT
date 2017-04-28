@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:43:49 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/23 20:58:10 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/28 20:27:50 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ double			ft_atof(const char *str)
 	double		res;
 	intmax_t	after_comma;
 	int			i;
+	int			neg;
 
+	neg = 0;
 	res = (double)ft_atoi(str);
+	if (res == 0 && str[0] == '-')
+		neg = 1;
 	i = 0;
 	while (str[i] && str[i] != '.')
 		i++;
@@ -46,5 +50,5 @@ double			ft_atof(const char *str)
 		after_comma = ft_atoi(str + i);
 		res += (res >= 0) ? zero_dot(after_comma) : -zero_dot(after_comma);
 	}
-	return (res);
+	return (neg) ? -res : res;
 }
