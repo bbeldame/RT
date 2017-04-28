@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 20:18:47 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/04/27 20:21:25 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/28 13:42:28 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ double      intersect_cone(t_ray ray, t_object cone)
     double          a;
     double          b;
     double          c;
-    float		    det;
-    float           t0;
-    float           t1;
-    t_vector        x = vec_ope_min(cone.origin, ray.origin);
+    double		    det;
+    double          t0;
+    double          t1;
+    t_vector        x;
+
+    x = vec_ope_min(cone.origin, ray.origin);
     a = dot(ray.direction, ray.direction) - 
         dot(ray.direction, cone.normal);
-    c = dot(x, x) - pow(dot(x, cone.normal) , 2) - 
+    c = dot(x, x) - pow(dot(x, cone.normal), 2) - 
         pow(cone.radius, 2);
     b = 2 * (dot(ray.direction, x) - 
     (dot(ray.direction, cone.normal) * dot(x, cone.normal)));

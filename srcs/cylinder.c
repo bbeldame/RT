@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: myernaux <myernaux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by myernaux          #+#    #+#             */
-/*   Updated: 2017/04/27 19:49:16 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/28 13:42:27 by myernaux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,15 @@ double      intersect_cylinder(t_ray ray, t_object cylinder)
     double          a;
     double          b;
     double          c;
-    float		    det;
-    float           t0;
-    float           t1;
-    t_vector        x = vec_ope_min(cylinder.origin, ray.origin);
+    double  	    det;
+    double          t0;
+    double          t1;
+    t_vector        x;
+
+    x = vec_ope_min(cylinder.origin, ray.origin);
     a = dot(ray.direction, ray.direction) - 
         dot(ray.direction, cylinder.normal);
-    c = dot(x, x) - pow(dot(x, cylinder.normal) , 2) - 
+    c = dot(x, x) - pow(dot(x, cylinder.normal), 2) - 
         pow(cylinder.radius, 2);
     b = 2 * (dot(ray.direction, x) - 
     (dot(ray.direction, cylinder.normal) * dot(x, cylinder.normal)));
@@ -47,7 +49,7 @@ double      intersect_cylinder(t_ray ray, t_object cylinder)
         t0 = (-b - det) / (2 * a);
         t1 = (-b + det) / (2 * a);
         if (t0 > t1)
-            return (t1);
+        return (t1);
         else
             return (t0);
     }
