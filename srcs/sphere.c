@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/01 21:20:44 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 23:24:59 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ double		intensity_sphere(t_env *e, t_vector poi,
 	dist_to_light = get_length(vec_to_light);
 	intensity = (dot(vec_to_eyes, normalize(vec_to_light)) *
 		ft_map(dist_to_light, 2000 * light.intensity, 500, 200));
-	//if (obj_in_shadow(e, poi, normalize(vec_ope_min(poi, light.origin))))
-	//	intensity = 0;
+	if (obj_in_shadow(e, poi, light))
+		intensity = 0;
 	return (intensity > 0) ? intensity : 0;
 }
 

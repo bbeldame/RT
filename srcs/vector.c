@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:41:44 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/09 20:15:16 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 23:28:00 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,15 @@ double		get_length(t_vector v)
 t_vector	normalize(t_vector vector)
 {
 	double length;
-	double inv;
 
 	length = get_length(vector);
 	if (length > 0)
 	{
-		inv = 1 / length;
-		return (c_vector(vector.x * inv, vector.y * inv, vector.z * inv));
+		return (c_vector(
+			vector.x / length,
+			vector.y / length,
+			vector.z / length
+		));
 	}
 	return (vector);
 }

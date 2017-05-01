@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/01 21:17:21 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 22:45:48 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ double			intensity_plane(t_env *e, t_vector poi,
 double			intensity_cylinder(t_env *e, t_vector poi,
 					t_object cylinder, t_light light);
 double			get_min_dist(t_env *e, t_ray ray, t_object **closest);
-int				obj_in_shadow(t_env *e, t_vector origin, t_vector direction);
+int				obj_in_shadow(t_env *e, t_vector poi, t_light light);
 double			get_res_of_quadratic(double a, double b, double c);
 
 /*

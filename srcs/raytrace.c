@@ -6,24 +6,25 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/01 21:12:54 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/02 00:27:15 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-int				obj_in_shadow(t_env *e, t_vector origin, t_vector direction)
+int				obj_in_shadow(t_env *e, t_vector poi, t_light light)
 {
 	t_ray		ray;
 	t_object	*dummyobj;
+	double		dist_to_light;
+	t_vector	normalized_to_light;
 
-	//printf("origin in ONS is %f, %f, %f\n", origin.x, origin.y, origin.z);
-	//printf("direction in ONS is %f, %f, %f\n", direction.x, direction.y, direction.z);
-	//printf("length is %f\n", get_length(direction));
-	ray = c_ray(origin, direction);
-	if (get_min_dist(e, ray, &dummyobj) > 0)
+	dist_to_light = get_length(vec_ope_min(light.origin, poi));
+	normalized_to_light = normalize(vec_ope_min(light.origin, poi));
+	ray = c_ray(vec_ope_add(poi, normalized_to_light), normalized_to_light);
+	if (get_min_dist(e, ray, &dummyobj) <= dist_to_light &&
+		get_min_dist(e, ray, &dummyobj) >= 0)
 	{
-		printf("Jai touché chef !\n");
 		return (1);
 	}
 	else
@@ -72,7 +73,7 @@ double			get_min_dist(t_env *e, t_ray ray, t_object **closest)
 		dist = (tmp->type == PLANE) ? intersect_plane(ray, *tmp) : dist;
 		dist = (tmp->type == CYLINDER) ? intersect_cylinder(ray, *tmp) : dist;
 		dist = (tmp->type == CONE) ? intersect_cone(ray, *tmp) : dist;
-		if (dist < min_dist)
+		if (dist > 0 && dist < min_dist)
 		{
 			min_dist = dist;
 			*closest = tmp;
