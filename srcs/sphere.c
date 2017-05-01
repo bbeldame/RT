@@ -6,47 +6,45 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/24 00:59:17 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 21:20:44 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-t_color		*compute_color_sphere(t_env *e, t_vector poi, t_object sphere)
+double		intensity_sphere(t_env *e, t_vector poi,
+				t_object sphere, t_light light)
 {
 	double		dist_to_light;
 	t_vector	vec_to_eyes;
 	t_vector	vec_to_light;
 	double		intensity;
-	t_color		*color;
 
-	color = copy_color(sphere.color);
 	vec_to_eyes = normalize(vec_ope_min(poi, sphere.origin));
-	vec_to_light = vec_ope_min(e->light->origin, poi);
+	vec_to_light = vec_ope_min(light.origin, poi);
 	dist_to_light = get_length(vec_to_light);
 	intensity = (dot(vec_to_eyes, normalize(vec_to_light)) *
-		ft_map(dist_to_light, 2000 * e->light->intensity, 500, 200));
-	color_mult(color, intensity);
-	return (color);
+		ft_map(dist_to_light, 2000 * light.intensity, 500, 200));
+	//if (obj_in_shadow(e, poi, normalize(vec_ope_min(poi, light.origin))))
+	//	intensity = 0;
+	return (intensity > 0) ? intensity : 0;
 }
 
 /*
 ** Implementation of :
-** http://www.dreamincode.net/forums/topic/124203-ray-sphere-intersection/
+** http://hugi.scene.org/online/hugi24/index%20coding%20&%20maths.htm
 */
 
 double		intersect_sphere(t_ray ray, t_object sphere)
 {
-	t_vector	dist;
 	double		a;
 	double		b;
-	double		x;
+	double		c;
+	t_vector	x;
 
-	dist = vec_ope_min(sphere.origin, ray.origin);
-	a = get_length(dist);
-	b = dot(dist, ray.direction);
-	x = (sphere.radius * sphere.radius) - (a * a - b * b);
-	if (x < 0)
-		return (DIST_MAX);
-	return (b - sqrt(x));
+	x = vec_ope_min(ray.origin, sphere.origin);
+	a = dot(ray.direction, ray.direction);
+	b = 2 * dot(ray.direction, x);
+	c = dot(x, x) - (sphere.radius * sphere.radius);
+	return (get_res_of_quadratic(a, b, c));
 }

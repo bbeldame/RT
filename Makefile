@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+         #
+#    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/27 20:23:20 by ocojeda-         ###   ########.fr        #
+#    Updated: 2017/04/30 19:48:50 by bbeldame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ clean:
 
 fclean:	clean
 	@rm -f $(NAME)
-	@make fclean -C $(LIBFTDIR)
+#	@make fclean -C $(LIBFTDIR)
 	@echo "$(GREEN)-----RTv1 removed completely------$(NC)"
 
 re: fclean all

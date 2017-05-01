@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 20:14:59 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/21 17:24:38 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/01 17:11:37 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ t_color				c_color(double r, double g, double b)
 	return (color);
 }
 
-void				color_mult(t_color *color, double taux)
+t_color				*color_mult(t_color color, double taux)
 {
-	color->r = color->r * taux;
-	color->g = color->g * taux;
-	color->b = color->b * taux;
-	color->r = (color->r > 255) ? 255 : color->r;
-	color->g = (color->g > 255) ? 255 : color->g;
-	color->b = (color->b > 255) ? 255 : color->b;
-	color->r = (color->r < 0) ? 0 : color->r;
-	color->g = (color->g < 0) ? 0 : color->g;
-	color->b = (color->b < 0) ? 0 : color->b;
+	t_color		*new_color;
+
+	new_color = copy_color(color);
+	new_color->r = color.r * taux;
+	new_color->g = color.g * taux;
+	new_color->b = color.b * taux;
+	new_color->r = (new_color->r > 255) ? 255 : new_color->r;
+	new_color->g = (new_color->g > 255) ? 255 : new_color->g;
+	new_color->b = (new_color->b > 255) ? 255 : new_color->b;
+	new_color->r = (new_color->r < 0) ? 0 : new_color->r;
+	new_color->g = (new_color->g < 0) ? 0 : new_color->g;
+	new_color->b = (new_color->b < 0) ? 0 : new_color->b;
+	return (new_color);
 }
 
 unsigned int		ret_colors(t_color colo)

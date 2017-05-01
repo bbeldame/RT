@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 09:33:24 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/24 01:00:46 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/04/30 20:55:36 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			set_first_obj(t_env *e, t_object *obj)
 ** the color are between 0 and 255
 */
 
-double			get_color(t_env *e, char *str)
+double			get_color_from_str(t_env *e, char *str)
 {
 	double		color;
 
@@ -87,9 +87,9 @@ t_color			set_color(t_env *e, char *arg)
 	if (len_of_tab(rgb) != 3)
 		syntax_error(arg, "Color must have R G and B", e->nbline);
 	color = c_color(
-		get_color(e, rgb[0]),
-		get_color(e, rgb[1]),
-		get_color(e, rgb[2])
+		get_color_from_str(e, rgb[0]),
+		get_color_from_str(e, rgb[1]),
+		get_color_from_str(e, rgb[2])
 	);
 	free_splited_str(rgb);
 	return (color);

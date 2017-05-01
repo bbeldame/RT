@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/27 20:22:46 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/01 21:17:21 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 # define DEFAULT_SUPERSAMPLING 0
 # define SS (e->setup.supersampling + 1)
-# define W 1500 * SS 
+# define W 1500 * SS
 # define H 800 * SS
 # define FOV 30
 # define KEY_ESC 53
@@ -94,20 +94,20 @@ typedef struct	s_object
 	struct s_object	*next;
 }				t_object;
 
-typedef struct	s_env
+typedef struct		s_env
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	t_setup		setup;
-	t_vector	camera;
-	char		*data;
-	t_light		*light;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	t_setup			setup;
+	t_vector		camera;
+	char			*data;
+	t_light			*light;
 	unsigned int	*img_temp;
-	t_object	*obj;
-	int			nbline;
-	int			fd;
-}				t_env;
+	t_object		*obj;
+	int				nbline;
+	int				fd;
+}					t_env;
 
 unsigned int	ret_colors(t_color color);
 t_vector		normalize(t_vector vector);
@@ -125,16 +125,23 @@ void			anti_supersampler(t_env *e);
 double			dot(t_vector v, t_vector b);
 double			intersect_sphere(t_ray ray, t_object sphere);
 int				key_hook(int keycode, t_env *e);
-void			color_mult(t_color *color, double taux);
+t_color			*color_mult(t_color color, double taux);
 double			get_length(t_vector v);
 double			intersect_plane(t_ray ray, t_object sphere);
 double			intersect_cylinder(t_ray ray, t_object cylinder);
-double			intersect_cone(t_ray ray, t_object cone);
-t_color			*compute_color_cone(t_env *e, t_vector poi, t_object cone);
-t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
 t_color			*copy_color(t_color color);
-t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
-t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
+double			intersect_cone(t_ray ray, t_object cone);
+double			intensity_cone(t_env *e, t_vector poi,
+					t_object cone, t_light light);
+double			intensity_sphere(t_env *e, t_vector poi,
+					t_object sphere, t_light light);
+double			intensity_plane(t_env *e, t_vector poi,
+					t_object plane, t_light light);
+double			intensity_cylinder(t_env *e, t_vector poi,
+					t_object cylinder, t_light light);
+double			get_min_dist(t_env *e, t_ray ray, t_object **closest);
+int				obj_in_shadow(t_env *e, t_vector origin, t_vector direction);
+double			get_res_of_quadratic(double a, double b, double c);
 
 /*
 ** Parser
