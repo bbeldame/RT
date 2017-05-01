@@ -6,30 +6,47 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/30 21:23:42 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 21:12:54 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
 
-static t_color		*get_color(t_env *e, t_object *obj, t_vector poi)
+int				obj_in_shadow(t_env *e, t_vector origin, t_vector direction)
+{
+	t_ray		ray;
+	t_object	*dummyobj;
+
+	//printf("origin in ONS is %f, %f, %f\n", origin.x, origin.y, origin.z);
+	//printf("direction in ONS is %f, %f, %f\n", direction.x, direction.y, direction.z);
+	//printf("length is %f\n", get_length(direction));
+	ray = c_ray(origin, direction);
+	if (get_min_dist(e, ray, &dummyobj) > 0)
+	{
+		printf("Jai touché chef !\n");
+		return (1);
+	}
+	else
+		return (0);
+}
+
+static t_color	*get_color(t_env *e, t_object *obj, t_vector poi)
 {
 	double		intensity;
 	t_light		*tmp;
-	t_color		*color;
 
 	intensity = 0;
 	tmp = e->light;
 	while (tmp)
 	{
 		if (obj && obj->type == SPHERE)
-			intensity += intensity_sphere(e, point_of_impact, *obj, *tmp);
+			intensity += intensity_sphere(e, poi, *obj, *tmp);
 		if (obj && obj->type == PLANE)
-			intensity += intensity_plane(e, point_of_impact, *obj, *tmp);
+			intensity += intensity_plane(e, poi, *obj, *tmp);
 		if (obj && obj->type == CYLINDER)
-			intensity += intensity_cylinder(e, point_of_impact, *obj, *tmp);
+			intensity += intensity_cylinder(e, poi, *obj, *tmp);
 		if (obj && obj->type == CONE)
-			intensity += intensity_cone(e, point_of_impact, *obj, *tmp);
+			intensity += intensity_cone(e, poi, *obj, *tmp);
 		tmp = tmp->next;
 	}
 	return (obj && intensity > 0) ? color_mult(obj->color, intensity) : NULL;
@@ -40,7 +57,7 @@ static t_color		*get_color(t_env *e, t_object *obj, t_vector poi)
  ** We save the first hitten object in the closest variable
  */
 
-double				get_min_dist(t_env *e, t_ray ray, t_object **closest)
+double			get_min_dist(t_env *e, t_ray ray, t_object **closest)
 {
 	t_object	*tmp;
 	double		min_dist;
@@ -70,7 +87,7 @@ double				get_min_dist(t_env *e, t_ray ray, t_object **closest)
  ** and send it to the compute method to return a color
  */
 
-static t_color		*get_pxl_color(t_env *e, t_ray ray)
+static t_color	*get_pxl_color(t_env *e, t_ray ray)
 {
 	double		min_dist;
 	t_object	*obj;

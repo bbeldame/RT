@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 20:08:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/04/30 21:31:23 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 21:20:41 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ double		intensity_plane(t_env *e, t_vector poi,
 {
 	t_vector	dist_to_light;
 	double		intensity;
-	t_color		*color;
 
-	color = copy_color(plane.color);
 	dist_to_light = vec_ope_min(light.origin, poi);
 	intensity = 0.5 * ft_map(get_length(dist_to_light), 2000 * light.intensity, 500, 200);
-	color_mult(color, intensity);
-	return (color);
+	//if (obj_in_shadow(e, poi, normalize(vec_ope_min(poi, light.origin))))
+	//	intensity = 0;
+	return (intensity > 0) ? intensity : 0;
 }
 
 /*

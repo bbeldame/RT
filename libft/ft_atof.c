@@ -6,7 +6,7 @@
 /*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 19:43:49 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/28 20:27:50 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/01 21:16:11 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static double	zero_dot(intmax_t nbr)
 	digits = 0;
 	diviser = 10;
 	tmpnbr = nbr;
-    while (tmpnbr > 0)
-    {
-        tmpnbr /= 10;
-        digits++;
-    }
+	while (tmpnbr > 0)
+	{
+		tmpnbr /= 10;
+		digits++;
+	}
 	while (digits-- > 1)
 		diviser *= 10;
 	return ((double)nbr / (double)diviser);
