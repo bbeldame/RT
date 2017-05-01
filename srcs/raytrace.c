@@ -3,21 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/27 20:24:31 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/30 21:23:42 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/rtv1.h"
+
+static t_color		*get_color(t_env *e, t_object *obj, t_vector poi)
+{
+	double		intensity;
+	t_light		*tmp;
+	t_color		*color;
+
+	intensity = 0;
+	tmp = e->light;
+	while (tmp)
+	{
+		if (obj && obj->type == SPHERE)
+			intensity += intensity_sphere(e, point_of_impact, *obj, *tmp);
+		if (obj && obj->type == PLANE)
+			intensity += intensity_plane(e, point_of_impact, *obj, *tmp);
+		if (obj && obj->type == CYLINDER)
+			intensity += intensity_cylinder(e, point_of_impact, *obj, *tmp);
+		if (obj && obj->type == CONE)
+			intensity += intensity_cone(e, point_of_impact, *obj, *tmp);
+		tmp = tmp->next;
+	}
+	return (obj && intensity > 0) ? color_mult(obj->color, intensity) : NULL;
+}
 
 /*
  ** We test all the object to get the minimal z coordinate of point_of_impact
  ** We save the first hitten object in the closest variable
  */
 
-static double		get_min_dist(t_env *e, t_ray ray, t_object **closest)
+double				get_min_dist(t_env *e, t_ray ray, t_object **closest)
 {
 	t_object	*tmp;
 	double		min_dist;
@@ -60,14 +83,7 @@ static t_color		*get_pxl_color(t_env *e, t_ray ray)
 		return (NULL);
 	point_of_impact = vec_ope_add(ray.origin,
 			vec_ope_mult(ray.direction, min_dist));
-	if (obj && obj->type == SPHERE)
-		color = compute_color_sphere(e, point_of_impact, *obj);
-	if (obj && obj->type == PLANE)
-		color = compute_color_plane(e, point_of_impact, *obj);
-	if (obj && obj->type == CYLINDER)
-		color = compute_color_cylinder(e, point_of_impact, *obj);
-	if (obj && obj->type == CONE)
-		color = compute_color_cone(e, point_of_impact, *obj);
+	color = get_color(e, obj, point_of_impact);
 	return (color);
 }
 

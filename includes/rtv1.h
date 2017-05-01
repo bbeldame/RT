@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/04/27 20:22:46 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/04/30 21:26:03 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,12 +129,17 @@ void			color_mult(t_color *color, double taux);
 double			get_length(t_vector v);
 double			intersect_plane(t_ray ray, t_object sphere);
 double			intersect_cylinder(t_ray ray, t_object cylinder);
-double			intersect_cone(t_ray ray, t_object cone);
-t_color			*compute_color_cone(t_env *e, t_vector poi, t_object cone);
-t_color			*compute_color_sphere(t_env *e, t_vector poi, t_object sphere);
 t_color			*copy_color(t_color color);
-t_color			*compute_color_plane(t_env *e, t_vector poi, t_object plane);
-t_color			*compute_color_cylinder(t_env *e, t_vector poi, t_object cylinder);
+double			intersect_cone(t_ray ray, t_object cone);
+double			intensity_cone(t_env *e, t_vector poi,
+					t_object cone, t_light light);
+double			intensity_sphere(t_env *e, t_vector poi,
+					t_object sphere, t_light light);
+double			intensity_plane(t_env *e, t_vector poi,
+					t_object plane, t_light light);
+double			intensity_cylinder(t_env *e, t_vector poi,
+					t_object cylinder, t_light light);
+double			get_min_dist(t_env *e, t_ray ray, t_object **closest);
 
 /*
 ** Parser

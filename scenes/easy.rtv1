@@ -1,6 +1,6 @@
 light:
   origin: 750 300 -200
-  intensity: 0.5
+  intensity: 1
 # BOX #
 plane:
   origin: 0 800 0
@@ -12,11 +12,11 @@ plane:
   color: 0 255 0
 plane:
   origin: 0 0 0
-  normal: -1.01 0 -0.01
+  normal: 1.01 0 -0.01
   color: 0 255 0
 plane:
   origin: 0 0 0
-  normal: 0 -1.001 -0.001
+  normal: 0 -1.001 0.001
   color: 0 255 0
 plane:
   origin: 0 0 2000

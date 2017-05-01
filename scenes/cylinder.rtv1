@@ -42,11 +42,11 @@ plane:
   color: 150 110 200
 plane:
   origin: 0 0 0
-  normal: -1.01 0 -0.01
+  normal: 1.01 0 -0.01
   color: 150 110 200
 plane:
   origin: 0 0 0
-  normal: 0 -1.001 -0.001
+  normal: 0 1.001 -0.001
   color: 150 110 200
 plane:
   origin: 0 0 2000
