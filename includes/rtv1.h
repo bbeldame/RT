@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/01 22:45:48 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/03 17:37:03 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,21 @@ enum	e_type
 	CONE
 };
 
-typedef struct	s_setup
-{
-	int			supersampling;
-	int			bpp;
-	int			sl;
-	int			endian;
-}				t_setup;
-
 typedef struct	s_vector
 {
 	double		x;
 	double		y;
 	double		z;
 }				t_vector;
+
+typedef struct	s_setup
+{
+	int			supersampling;
+	int			bpp;
+	int			sl;
+	int			endian;
+	t_vector	camera;
+}				t_setup;
 
 typedef struct	s_ray
 {
@@ -100,7 +101,6 @@ typedef struct		s_env
 	void			*win;
 	void			*img;
 	t_setup			setup;
-	t_vector		camera;
 	char			*data;
 	t_light			*light;
 	unsigned int	*img_temp;
