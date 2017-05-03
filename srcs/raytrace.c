@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/03 19:40:19 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:14:47 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int				obj_in_shadow(t_env *e, t_vector poi, t_light light)
 	t_ray		ray;
 	t_object	*dummyobj;
 	double		dist_to_light;
-	t_vector	normalized_to_light;
+	double		dist;
 
 	dist_to_light = get_length(vec_ope_min(light.origin, poi));
-	normalized_to_light = normalize(vec_ope_min(light.origin, poi));
-	ray = c_ray(vec_ope_add(poi, normalized_to_light), normalized_to_light);
-	if (get_min_dist(e, ray, &dummyobj) <= dist_to_light &&
-		get_min_dist(e, ray, &dummyobj) >= 0)
+	ray = c_ray(vec_ope_add(poi, normalize(vec_ope_min(light.origin, poi))),
+	normalize(vec_ope_min(light.origin, poi)));
+	dist = get_min_dist(e, ray, &dummyobj, 1);
+	if (dist > 0 && dist < dist_to_light)
 	{
 		return (1);
 	}
@@ -56,9 +56,11 @@ static t_color	*get_color(t_env *e, t_object *obj, t_vector poi)
 /*
  ** We test all the object to get the minimal z coordinate of point_of_impact
  ** We save the first hitten object in the closest variable
+ ** cangoneg is here to know if we compute the object in the negative distance or not
  */
 
-double			get_min_dist(t_env *e, t_ray ray, t_object **closest)
+double			get_min_dist(t_env *e, t_ray ray,
+					t_object **closest, int cangoneg)
 {
 	t_object	*tmp;
 	double		min_dist;
@@ -73,9 +75,9 @@ double			get_min_dist(t_env *e, t_ray ray, t_object **closest)
 		dist = (tmp->type == PLANE) ? intersect_plane(ray, *tmp) : dist;
 		dist = (tmp->type == CYLINDER) ? intersect_cylinder(ray, *tmp) : dist;
 		dist = (tmp->type == CONE) ? intersect_cone(ray, *tmp) : dist;
-		if (dist > 0 && dist < min_dist)
+		if (dist < min_dist)
 		{
-			min_dist = dist;
+			min_dist = (cangoneg && dist < 0) ? min_dist : dist;
 			*closest = tmp;
 		}
 		tmp = tmp->next;
@@ -97,7 +99,7 @@ static t_color	*get_pxl_color(t_env *e, t_ray ray)
 
 	color = NULL;
 	obj = NULL;
-	if ((min_dist = get_min_dist(e, ray, &obj)) == -1)
+	if ((min_dist = get_min_dist(e, ray, &obj, 0)) == -1)
 		return (NULL);
 	point_of_impact = vec_ope_add(ray.origin,
 			vec_ope_mult(ray.direction, min_dist));
@@ -127,8 +129,8 @@ int				raytrace(t_env *e)
 		while (x < W)
 		{
 			pov = c_vector((double)(x + e->setup.camera.x) / SS, 
-			(double)(y + e->setup.camera.y)  / SS, 1);
-			ray = c_ray(pov, c_vector(x-W/2, y-H/2, 1000));
+			(double)(y + e->setup.camera.y) / SS, 1);
+			ray = c_ray(pov, c_vector(0, 0, 1));
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
 				img_temp[x + y * W] = ret_colors(*color);

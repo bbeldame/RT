@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/03 17:37:03 by ocojeda-         ###   ########.fr       */
+/*   Updated: 2017/05/03 20:11:21 by bbeldame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define FOV 30
 # define KEY_ESC 53
 # define DIST_MAX 20000
+# define DIST_MIN -80000
 
 /*
 ** Compute the average color between two 24-bits RGB colors
@@ -139,7 +140,7 @@ double			intensity_plane(t_env *e, t_vector poi,
 					t_object plane, t_light light);
 double			intensity_cylinder(t_env *e, t_vector poi,
 					t_object cylinder, t_light light);
-double			get_min_dist(t_env *e, t_ray ray, t_object **closest);
+double			get_min_dist(t_env *e, t_ray ray, t_object **closest, int cangoneg);
 int				obj_in_shadow(t_env *e, t_vector poi, t_light light);
 double			get_res_of_quadratic(double a, double b, double c);
 
