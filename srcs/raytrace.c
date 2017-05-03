@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/02 00:27:15 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/03 19:40:19 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,9 @@ int				raytrace(t_env *e)
 		x = 0;
 		while (x < W)
 		{
-			pov = c_vector((double)x / SS, (double)y / SS, 0);
-			ray = c_ray(pov, c_vector(0, 0, 1));
+			pov = c_vector((double)(x + e->setup.camera.x) / SS, 
+			(double)(y + e->setup.camera.y)  / SS, 1);
+			ray = c_ray(pov, c_vector(x-W/2, y-H/2, 1000));
 			color = get_pxl_color(e, ray);
 			if (color != NULL)
 				img_temp[x + y * W] = ret_colors(*color);

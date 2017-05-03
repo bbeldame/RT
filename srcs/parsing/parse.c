@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 19:20:10 by bbeldame          #+#    #+#             */
-/*   Updated: 2017/04/24 20:17:05 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/05/03 17:48:21 by ocojeda-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ t_env	*parse(char *scene)
 	}
 	if (close(e->fd) == -1)
 		err_found("close failed");
+	e->setup.camera = c_vector(0, 0, 0);
 	return (e);
 }
