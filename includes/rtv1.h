@@ -6,9 +6,10 @@
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/08/08 16:57:39 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/08/08 17:00:05 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef RTV1_H
 # define RTV1_H
@@ -25,7 +26,7 @@
 ** SS value. 1 for off, 2 for on.
 */
 
-# define DEFAULT_SUPERSAMPLING 0
+# define DEFAULT_SUPERSAMPLING 1
 # define SS (e->setup.supersampling + 1)
 # define W 1500 * SS
 # define H 800 * SS
@@ -40,7 +41,9 @@
 ** https://www.compuphase.com/graphic/scale3.htm
 */
 
-# define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) >> 1) + ((a) & (b)) )
+# define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) << 1) + ((a) & (b)) )
+
+//# define AVERAGE(a, b)   ( ((((a) ^ (b)) & 0xfffefefeL) >> 1) + ((a) + (b)) ) //effect bizarre
 
 enum	e_type
 {

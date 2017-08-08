@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
+#    By: ocojeda- <ocojeda-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/08/08 15:07:06 by tfaure           ###   ########.fr        #
+#    Updated: 2017/08/08 16:33:39 by ocojeda-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,3 +68,5 @@ fclean:	clean
 	@echo "$(GREEN)-----RTv1 removed completely------$(NC)"
 
 re: fclean all
+
+.PHONY: all clean fclean re
