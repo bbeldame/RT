@@ -6,7 +6,7 @@
 /*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/08/08 15:15:00 by tfaure           ###   ########.fr       */
+/*   Updated: 2017/08/08 16:55:57 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double		intensity_sphere(t_env *e, t_vector poi,
 		ft_map(dist_to_light, 2000 * light.intensity, 500, 200));
 	if (obj_in_shadow(e, poi, light))
 		intensity -= AMBIENT_LIGHT;
-	return (intensity > 0) ? intensity : 0;
+	return (intensity > AMBIENT_LIGHT) ? intensity : AMBIENT_LIGHT;
 }
 
 /*
