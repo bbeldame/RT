@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 14:37:39 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/03 20:11:21 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:14:17 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 ** SS value. 1 for off, 2 for on.
 */
 
-# define DEFAULT_SUPERSAMPLING 0
+# define DEFAULT_SUPERSAMPLING 1
 # define SS (e->setup.supersampling + 1)
 # define W 1500 * SS
 # define H 800 * SS
@@ -33,6 +33,7 @@
 # define KEY_ESC 53
 # define DIST_MAX 20000
 # define DIST_MIN -80000
+# define AMBIENT_LIGHT 50
 
 /*
 ** Compute the average color between two 24-bits RGB colors

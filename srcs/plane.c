@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 20:08:17 by ocojeda-          #+#    #+#             */
-/*   Updated: 2017/05/01 22:44:45 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:14:42 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double		intensity_plane(t_env *e, t_vector poi,
 	dist_to_light = vec_ope_min(light.origin, poi);
 	intensity = 0.5 * ft_map(get_length(dist_to_light), 2000 * light.intensity, 500, 200);
 	if (obj_in_shadow(e, poi, light))
-		intensity = 0;
+		intensity -= AMBIENT_LIGHT;
 	return (intensity > 0) ? intensity : 0;
 }
 

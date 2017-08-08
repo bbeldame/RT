@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 15:04:18 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/01 23:24:59 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:15:00 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ double		intensity_sphere(t_env *e, t_vector poi,
 	intensity = (dot(vec_to_eyes, normalize(vec_to_light)) *
 		ft_map(dist_to_light, 2000 * light.intensity, 500, 200));
 	if (obj_in_shadow(e, poi, light))
-		intensity = 0;
+		intensity -= AMBIENT_LIGHT;
 	return (intensity > 0) ? intensity : 0;
 }
 

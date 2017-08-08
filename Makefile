@@ -6,12 +6,12 @@
 #    By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/26 19:16:02 by bbeldame          #+#    #+#              #
-#    Updated: 2017/04/30 19:48:50 by bbeldame         ###   ########.fr        #
+#    Updated: 2017/08/08 15:07:06 by tfaure           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rtv1
-FLAGS = -Wall -Wextra # @todo : Add -Werror Flag, Uncomment Minilibx clean
+FLAGS = -Wall -Wextra # @todo : Add -Werror Flag, Uncomment Minilibx clean -Ofast
 MLX = ./minilibX/
 MLX_LIB = $(addprefix $(MLX),mlx.a)
 MLX_INC	= -I ./miniLibX

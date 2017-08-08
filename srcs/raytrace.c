@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytrace.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbeldame <bbeldame@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tfaure <tfaure@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/24 16:26:32 by tfaure            #+#    #+#             */
-/*   Updated: 2017/05/03 20:14:47 by bbeldame         ###   ########.fr       */
+/*   Updated: 2017/08/08 14:48:53 by tfaure           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static t_color	*get_color(t_env *e, t_object *obj, t_vector poi)
 			intensity += intensity_cone(e, poi, *obj, *tmp);
 		tmp = tmp->next;
 	}
-	return (obj && intensity > 0) ? color_mult(obj->color, intensity) : NULL;
+	return (obj && intensity >= 0) ? color_mult(obj->color, intensity) : NULL;
 }
 
 /*
